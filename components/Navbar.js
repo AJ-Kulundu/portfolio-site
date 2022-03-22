@@ -23,9 +23,9 @@ const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
   const value = useColorModeValue("white","gray.800");
   return (
-    <Flex p={4} zIndex={9} position="sticky" top={0} width={"100%"} bg={value} align={"center"}boxShadow={"sm"}>
+    <Flex p={4} mx={4} zIndex={9} position="sticky" top={0} width={"100%"} bg={value} align={"center"}boxShadow={"sm"}>
       <Box>
-        <Heading>AJ-KULUNDU</Heading>
+        <Heading fontSize={{base:"md",md:"lg"}}>AJ Kulundu</Heading>
       </Box>
       <Spacer />
       <Box display={{ base: "block", md: "none" }}>
@@ -39,7 +39,7 @@ const Navbar = () => {
         </HStack>
         <Slide direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
           <Box p={6} bg={value}>
-            <VStack spacing="30px" pb={20}>
+            <VStack spacing="25px" pb={20}>
               <NavItem>Home</NavItem>
               <NavItem>About</NavItem>
               <NavItem>Projects</NavItem>
@@ -54,7 +54,7 @@ const Navbar = () => {
         flexBasis={{ base: "100%", md: "auto" }}
       >
         <Flex width={"50%"} align="center" justify={{ base: "center", md: "space-between" }}>
-          <HStack Spacing="30px">
+          <HStack spacing="30px">
             <NavItem>Home</NavItem>
             <NavItem>About</NavItem>
             <NavItem>Projects</NavItem>
@@ -73,6 +73,7 @@ const NavItem = ({children}) => {
 
   return(
     <MotionText
+    as="samp"
     whileHover = {{scale:1.2}}
     whileTap = {{scale:0.8}}>
       <Link>{children}</Link>
