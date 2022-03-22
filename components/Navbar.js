@@ -23,8 +23,8 @@ const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
   const value = useColorModeValue("white","gray.800");
   return (
-    <Flex p={4} mx={4} zIndex={9} position="sticky" top={0} width={"100%"} bg={value} align={"center"}boxShadow={"sm"}>
-      <Box>
+    <Flex p={4} px={4} zIndex={9} position="sticky" top={0} width={"100%"} bg={value} align={"center"}boxShadow={"sm"}>
+      <Box px={{base:0,md:6,lg:8}}>
         <Heading fontSize={{base:"md",md:"lg"}}>AJ Kulundu</Heading>
       </Box>
       <Spacer />
@@ -73,7 +73,6 @@ const NavItem = ({children}) => {
 
   return(
     <MotionText
-    as="samp"
     whileHover = {{scale:1.2}}
     whileTap = {{scale:0.8}}>
       <Link>{children}</Link>
@@ -84,6 +83,7 @@ const Toggle = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <IconButton
+    borderRadius={'full'}
       variant="ghost"
       aria-label="Dark/Light mode toggle"
       icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
