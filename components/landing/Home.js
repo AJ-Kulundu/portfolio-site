@@ -12,7 +12,7 @@ function Home() {
       <Flex p={8} flex={1} justify={"center"} align={"center"}>
         <Stack spacing={4} w={"full"} maxW={"lg"}>
           <Text fontSize={{ base: "xl", md: "2xl", lg: "4xl" }}>
-            Hello👋,I&apos;m
+            Hello👋, I&apos;m
           </Text>
           {/* useColormodeValue("black","white"),useColormodeValue("gray.800,"gray.300") */}
           <Heading
@@ -32,7 +32,7 @@ function Home() {
                 3000,
                 "Full Stack Web Developer",
                 3000,
-                "App Developer",
+                "Mobile App Developer",
                 3000,
                 "Cloud Practitioner",
                 3000,
@@ -51,7 +51,7 @@ function Home() {
           </HStack>
         </Stack>
       </Flex>
-      <Flex flex={1} align={"center"}>
+      <Flex flex={1} align={"center"} display={{base:"none",md:"block"}}>
         <Heading>AJ Kulundu</Heading>
       </Flex>
     </Stack>
