@@ -5,9 +5,6 @@ const theme = extendTheme({
     heading: "Work Sans",
     body: "Work Sans",
   },
-  Link: {
-variants: { _hover: { textDecoration: "none" } },
-  },
 });
 
 export default theme;
