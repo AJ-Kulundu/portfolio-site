@@ -6,7 +6,7 @@ import {
   Button,
   FormControl,
   VStack,
-  HStack,
+  useToast,
   FormErrorMessage,
   Textarea,
   Heading,
@@ -22,8 +22,9 @@ const ContactSchema = Yup.object().shape({
   message: Yup.string().required("A message is required"),
 });
 function Contact() {
+  const toast =useToast();
   return (
-    <Flex p={8}>
+    <Flex>
       <Stack minH={"80vh"} direction={{ base: "column", md: "row" }}>
         <Flex p={8} flex={1} justify={"center"} align={"center"}>
           <Stack spacing={4} w={"full"} maxW={"lg"}>
@@ -39,14 +40,23 @@ function Contact() {
               validationSchema={ContactSchema}
               onSubmit={(values, actions) => {
                 setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
+                  toast({
+                    title:'Message received',
+                    description:"I'll  get back to you as soon as possible",
+                    position:"top-right",
+                    variant:"left-accent",
+                    status:"success",
+                    isClosable:true,
+                    duration:4000
+                  })
                   actions.setSubmitting(false);
+                  actions.resetForm();
                 }, 1000);
               }}
             >
               {(props) => (
                 <Form>
-                  <VStack spacing={{ base: 4, md: 8 }}>
+                  <VStack spacing={{ base: 2, md: 4 }}>
                     <Field name="name">
                       {({ field, form }) => (
                         <FormControl
