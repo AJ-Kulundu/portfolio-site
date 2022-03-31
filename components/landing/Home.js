@@ -8,7 +8,7 @@ const MotionButton = motion(Button);
 
 function Home() {
   return (
-    <Stack minH={"80vh"} direction={{ base: "column", md: "row" }}>
+    <Stack minH={"60vh"} direction={{ base: "column", md: "row" }}>
       <Flex p={8} flex={1} justify={"center"} align={"center"}>
         <Stack spacing={4} w={"full"} maxW={"lg"}>
           <Text fontSize={{ base: "xl", md: "2xl", lg: "4xl" }}>
@@ -18,7 +18,7 @@ function Home() {
           <Heading
             fontSize={{ base: "xl", md: "2xl", lg: "4xl" }}
             bgClip="text"
-            bgGradient="linear(to-r, #63B3ED, #00A3C4, #FF0080)"
+            bgGradient="linear(to-r, #7928CA, #FF0080)"
           >
             AJ Kulundu
           </Heading>
@@ -40,7 +40,7 @@ function Home() {
             />
           </Heading>
           <Text>
-            I&apos;m a Software developer based in Nairobi, currently working on
+            I&apos;m a Software developer based in Nairobi, working on
             NodeJS and React Projects.
             <br />
             📚 Currently Learning Flutter.

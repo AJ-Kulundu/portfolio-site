@@ -1,9 +1,9 @@
 import React from "react";
-import { IconButton, Stack, Text } from "@chakra-ui/react";
+import { Stack, Text } from "@chakra-ui/react";
 import { FaGithub, FaLinkedinIn, FaTwitter, FaMediumM } from "react-icons/fa";
-import { motion } from "framer-motion";
 
-const MButton = motion(IconButton);
+
+
 
 function Footer() {
   return (
@@ -17,30 +17,13 @@ function Footer() {
       align={{ base: "center", md: "center" }}
       boxShadow="sm"
     >
-      <Text><strong>© 2022</strong></Text>
-      <Stack direction={"row"} spacing={4}>
-        <SocialButton label={"Github link"} href={"#"} icon={<FaGithub />} />
-        <SocialButton label={"LinkedIn link"} href={"#"} icon={<FaLinkedinIn />} />
-        <SocialButton label={"Twitter Link"} href={"#"} icon={<FaTwitter />} />
-        <SocialButton label={"Medium Link"} href={"#"} icon={<FaMediumM />} />
-      </Stack>
+      <Text>© 2022</Text>
+      <Text><strong>Designed + Coded by AJ Kulundu</strong></Text>
+      <Text>Made in Nairobi,KE</Text>
     </Stack>
   );
 }
 
-const SocialButton = ({ icon, href, label }) => {
-  return (
-    <MButton
-      aria-label={label}
-      icon={icon}
-      href={href}
-      as={"a"}
-      borderRadius={"full"}
-      variant={"ghost"}
-      whileHover={{ scale: 1.2 }}
-      whileTap={{ scale: 0.8 }}
-    />
-  );
-};
+
 
 export default Footer;
