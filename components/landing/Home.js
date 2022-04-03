@@ -8,7 +8,7 @@ const MotionButton = motion(Button);
 
 function Home() {
   return (
-    <Stack minH={"60vh"} direction={{ base: "column", md: "row" }}>
+    <Stack minH={"70vh"} direction={{ base: "column", md: "row" }}>
       <Flex p={8} flex={1} justify={"center"} align={"center"}>
         <Stack spacing={4} w={"full"} maxW={"lg"}>
           <Text fontSize={{ base: "xl", md: "2xl", lg: "4xl" }}>
