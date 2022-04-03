@@ -1,4 +1,4 @@
-import React,{useEffect,useRef} from "react";
+import React, { useState, useRef } from "react";
 import {
   Flex,
   SimpleGrid,
@@ -13,85 +13,86 @@ import {
   Heading,
   VStack,
   Box,
+  useColorModeValue,
 } from "@chakra-ui/react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, layout } from "framer-motion";
 
 const tech = [
   {
     technology: "Web Development",
-    category: "",
+    colour: "teal.500",
     percentage: 90,
     name: "HTML",
   },
   {
     technology: "Web Development",
-    category: "",
+    colour: "teal.500",
     percentage: 70,
     name: "CSS",
   },
   {
     technology: "Web Development",
-    category: "",
+    colour: "teal.500",
     percentage: 80,
     name: "NodeJS",
   },
   {
     technology: "Web Development",
-    category: "",
+    colour: "teal.500",
     percentage: 80,
     name: "React",
   },
   {
     technology: "Web Development",
-    category: "",
+    colour: "teal.500",
     percentage: 80,
     name: "API Design",
   },
   {
     technology: "Software Development",
-    category: "",
+    colour: "cyan.500",
     percentage: 80,
     name: "Javascript",
   },
   {
     technology: "Software Development",
-    category: "",
+    colour: "cyan.500",
     percentage: 70,
     name: "Python",
   },
   {
     technology: "Software Development",
-    category: "",
+    colour: "cyan.500",
     percentage: 50,
     name: "Java",
   },
   {
     technology: "Software Development",
-    category: "",
+    colour: "cyan.500",
     percentage: 50,
     name: "Golang",
   },
   {
     technology: "Software Development",
-    category: "",
+    colour: "cyan.500",
     percentage: 50,
     name: "Flutter",
   },
   {
     technology: "Software Development",
-    category: "",
+    colour: "cyan.500",
     percentage: 60,
     name: "react-native",
   },
   {
     technology: "Cloud",
-    category: "",
+    colour: "blue.500",
     percentage: 70,
     name: "AWS",
   },
   {
     technology: "Cloud",
-    category: "",
+    colour: "blue.500",
     percentage: 70,
     name: "Google Cloud",
   },
@@ -99,9 +100,10 @@ const tech = [
 
 const MBox = motion(Box);
 function Skills() {
+  const [selected, setSelected] = useState(0);
   return (
-    <VStack spacing={4} p={8} minH={"35vh"}>
-      <Flex width={"100%"} align={"flex-start"}>
+    <VStack spacing={4} p={8} minH={"40vh"}>
+      <Flex px={4} width={"100%"} align={"flex-start"}>
         <Heading>Skills</Heading>
       </Flex>
       <Tabs
@@ -109,16 +111,18 @@ function Skills() {
         variant="soft-rounded"
         w={{ md: "full" }}
         align={"center"}
+        colorScheme={useColorModeValue("blackAlpha", "whiteAlpha")}
         isFitted
+        lazyBehavior="unmount"
       >
-        <TabList mb={2}>
+        <TabList mb={2} >
           <Tab>All</Tab>
           <Tab>Web Development</Tab>
           <Tab>Software Development</Tab>
           <Tab>Cloud</Tab>
         </TabList>
         <TabPanels>
-          <TabPanel as={AnimatePresence}>
+          <TabPanel as={AnimatePresence} exitBeforeEnter>
             <SimpleGrid columns={{ base: 2, md: 4, lg: 6 }}>
               {tech.map((data, id) => (
                 <SkillScore
@@ -126,11 +130,12 @@ function Skills() {
                   index={id}
                   percentage={data.percentage}
                   label={data.name}
+                  colour={data.colour}
                 />
               ))}
             </SimpleGrid>
           </TabPanel>
-          <TabPanel as={AnimatePresence}>
+          <TabPanel as={AnimatePresence} exitBeforeEnter>
             <SimpleGrid columns={{ base: 2, md: 4, lg: 6 }}>
               {tech
                 .filter((tech) => tech.technology === "Web Development")
@@ -140,11 +145,12 @@ function Skills() {
                     index={id}
                     percentage={data.percentage}
                     label={data.name}
+                    colour={data.colour}
                   />
                 ))}
             </SimpleGrid>
           </TabPanel>
-          <TabPanel as={AnimatePresence}>
+          <TabPanel as={AnimatePresence} exitBeforeEnter>
             <SimpleGrid columns={{ base: 2, md: 4, lg: 6 }}>
               {tech
                 .filter((tech) => tech.technology === "Software Development")
@@ -154,11 +160,12 @@ function Skills() {
                     index={id}
                     percentage={data.percentage}
                     label={data.name}
+                    colour={data.colour}
                   />
                 ))}
             </SimpleGrid>
           </TabPanel>
-          <TabPanel as={AnimatePresence} >
+          <TabPanel as={AnimatePresence} exitBeforeEnter>
             <SimpleGrid columns={{ base: 2, md: 4, lg: 6 }}>
               {tech
                 .filter((tech) => tech.technology === "Cloud")
@@ -168,6 +175,7 @@ function Skills() {
                     index={id}
                     percentage={data.percentage}
                     label={data.name}
+                    colour={data.colour}
                   />
                 ))}
             </SimpleGrid>
@@ -178,23 +186,25 @@ function Skills() {
   );
 }
 
-const SkillScore = ({ index, percentage, label, ...rest }) => {
-    
+const SkillScore = ({ index, percentage, label, colour, ...rest }) => {
   return (
-    <AnimatePresence>
-      <MBox
-        alignContent={"center"}
-        initial={{ opacity: 0, translateX: -50 }}
-        animate={{ opacity: 1, translateX: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.3 }}
-        exit={{ opacity: 0, translateX: 50, transition:{delay:index*0.2} }}
+    <MBox
+      alignContent={"center"}
+      initial={{ opacity: 0, translateX: -50 }}
+      animate={{ opacity: 1, translateX: 0 }}
+      transition={{ duration: 0.7, delay: (index + 1) * 0.2 }}
+      exit={{ opacity: 0, transition: { duration: 0.1 } }}
+    >
+      <CircularProgress
+        value={percentage}
+        size="100px"
+        color={colour}
+        {...rest}
       >
-        <CircularProgress value={percentage} size="100px" {...rest}>
-          <CircularProgressLabel>{percentage}%</CircularProgressLabel>
-        </CircularProgress>
-        <Text>{label}</Text>
-      </MBox>
-    </AnimatePresence>
+        <CircularProgressLabel>{percentage}%</CircularProgressLabel>
+      </CircularProgress>
+      <Text>{label}</Text>
+    </MBox>
   );
 };
 
