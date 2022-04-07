@@ -26,16 +26,20 @@ import {
 } from "react-icons/fa";
 import { BiMailSend } from "react-icons/bi";
 import { motion } from "framer-motion";
+import * as emailjs from "emailjs-com";
 
 const MButton = motion(IconButton);
 
 const ContactSchema = Yup.object().shape({
-  name: Yup.string().required("Your name is required"),
-  email: Yup.string().email("Invalid email").required("Your email is required"),
+  from_name: Yup.string().required("Your name is required"),
+  reply_to: Yup.string()
+    .email("Invalid email")
+    .required("Your email is required"),
   subject: Yup.string().required("A subject is required"),
   message: Yup.string().required("A message is required"),
 });
-function Contact() {
+
+function Contact({ userID, serviceID, templateID, userEmail }) {
   const toast = useToast();
   return (
     <Stack minH={"60vh"} direction={{ base: "column", md: "row" }}>
@@ -49,44 +53,78 @@ function Contact() {
             requests using the form below.{" "}
           </Text>
           <Formik
-            initialValues={{ name: "", email: "", subject: "", message: "" }}
+            initialValues={{
+              from_name: "",
+              to_name: userEmail,
+              reply_to: "",
+              subject: "",
+              message: "",
+            }}
             validationSchema={ContactSchema}
             onSubmit={(values, actions) => {
-              setTimeout(() => {
-                toast({
-                  title: "Message received",
-                  description: "I'll  get back to you as soon as possible",
-                  position: "top-right",
-                  variant: "left-accent",
-                  status: "success",
-                  isClosable: true,
-                  duration: 4000,
+              emailjs
+                .send(serviceID, templateID, values, userID)
+                .then((res) => {
+                  console.log("SUCCESS!", res.status, res.text);
+
+                  toast({
+                    title: "Message received",
+                    description: "I'll  get back to you as soon as possible",
+                    position: "top-right",
+                    variant: "left-accent",
+                    status: "success",
+                    isClosable: true,
+                    duration: 4000,
+                  });
+                  actions.setSubmitting(false);
+                  actions.resetForm();
+                })
+                .catch((error) => {
+                  console.log("FAILED...", error);
+
+                  toast({
+                    title: "Message was not received",
+                    description: "An error has occured",
+                    position: "top-right",
+                    variant: "left-accent",
+                    status: "error",
+                    isClosable: true,
+                    duration: 4000,
+                  });
+
+                  actions.setSubmitting(false);
+                  actions.resetForm();
                 });
-                actions.setSubmitting(false);
-                actions.resetForm();
-              }, 1000);
             }}
           >
             {(props) => (
               <Form>
                 <VStack spacing={{ base: 2, md: 4 }}>
-                  <Field name="name">
+                  <Field name="from_name">
                     {({ field, form }) => (
                       <FormControl
-                        isInvalid={form.errors.name && form.touched.name}
+                        isInvalid={
+                          form.errors.from_name && form.touched.from_name
+                        }
                       >
                         <Input {...field} placeholder="Name" />
-                        <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                        <FormErrorMessage>
+                          {form.errors.from_name}
+                        </FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>
-                  <Field name="email">
+                  <Field name="reply_to">
                     {({ field, form }) => (
                       <FormControl
-                        isInvalid={form.errors.email && form.touched.email}
+                        isInvalid={
+                          form.errors.reply_to && form.touched.reply_to
+                        }
                       >
                         <Input {...field} placeholder="Email" />
-                        <FormErrorMessage>{form.errors.email}</FormErrorMessage>
+                        <FormErrorMessage>
+                          {form.errors.reply_to}
+                        </FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>
@@ -114,7 +152,12 @@ function Contact() {
                       </FormControl>
                     )}
                   </Field>
-                  <Button isLoading={props.isSubmitting} type="submit" size='lg'>
+                  <Button
+                    isLoading={props.isSubmitting}
+                    loadingText="Sending"
+                    type="submit"
+                    size="lg"
+                  >
                     Send
                   </Button>
                 </VStack>
