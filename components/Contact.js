@@ -182,22 +182,22 @@ function Contact({ userID, serviceID, templateID, userEmail }) {
             <Stack direction={"row"} spacing={4}>
               <SocialButton
                 label={"Github link"}
-                href={"#"}
+                href={"https://github.com/AJ-Kulundu"}
                 icon={<FaGithub />}
               />
               <SocialButton
                 label={"LinkedIn link"}
-                href={"#"}
+                href={"https://www.linkedin.com/in/james-kulundu-480034234/"}
                 icon={<FaLinkedinIn />}
               />
               <SocialButton
                 label={"Twitter Link"}
-                href={"#"}
+                href={"https://twitter.com/Arnold_JK6"}
                 icon={<FaTwitter />}
               />
               <SocialButton
                 label={"Medium Link"}
-                href={"#"}
+                href={"https://medium.com/@AJkulundu"}
                 icon={<FaMediumM />}
               />
             </Stack>
