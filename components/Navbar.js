@@ -62,25 +62,24 @@ const Navbar = () => {
           <Box p={4} bg={value}>
             <VStack spacing="25px" pb={10}>
               <NavItem>Home</NavItem>
-              <NavItem>About</NavItem>
               <NavItem>Projects</NavItem>
               <NavItem>Skills</NavItem>
               <NavItem>Contact</NavItem>
               <Stack direction={"row"} spacing={4}>
-                <MButton label={"Github link"} href={"#"} icon={<FaGithub />} />
-                <MButton
+                <SocialButton label={"Github link"} href={"https://github.com/AJ-Kulundu"} icon={<FaGithub />} />
+                <SocialButton
                   label={"LinkedIn link"}
-                  href={"#"}
+                  href={"https://www.linkedin.com/in/james-kulundu-480034234/"}
                   icon={<FaLinkedinIn />}
                 />
-                <MButton
+                <SocialButton
                   label={"Twitter Link"}
-                  href={"#"}
+                  href={"https://twitter.com/Arnold_JK6"}
                   icon={<FaTwitter />}
                 />
-                <MButton
+                <SocialButton
                   label={"Medium Link"}
-                  href={"#"}
+                  href={"https://medium.com/@AJkulundu"}
                   icon={<FaMediumM />}
                 />
               </Stack>
@@ -99,7 +98,6 @@ const Navbar = () => {
         >
           <HStack spacing="30px">
             <NavItem>Home</NavItem>
-            <NavItem>About</NavItem>
             <NavItem>Projects</NavItem>
             <NavItem>Skills</NavItem>
             <NavItem>Contact</NavItem>
