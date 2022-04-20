@@ -64,14 +64,14 @@ function Project() {
   const nextSlide = () => {
     setSlide((slide) => (slide === slidesCount - 1 ? 0 : slide + 1));
   };
+ 
+  const setCurrentSlide = (s) => {
+    setSlide(s);
+  };
 
-  // const carouselStyle = {
-  //   ml: `-${slide * 100}%`,
-  //   transition: "all 1.5s",
-  // };
-  console.log(slide);
+  
   return (
-    <VStack minH={"50vh"} px={10}>
+    <VStack minH={"60vh"} px={10}>
       <Flex justify={"flex-start"}>
         <Heading>Projects</Heading>
       </Flex>
@@ -100,6 +100,21 @@ function Project() {
           </MFlex>
         </AnimatePresence>
       </Flex>
+      <HStack justify="center"  mt={4} w="full">
+      {Array.from({ length: slidesCount }).map((_, data) => (
+            <Box
+              key={`dots-${data}`}
+              cursor="pointer"
+              boxSize={["7px", , "15px"]}
+              bg={slide === data ? "gray.700" : "gray.200"}
+              rounded="50%"
+              display="inline-block"
+              transition="background-color 0.6s ease"
+              _hover={{ bg: "blackAlpha.800" }}
+              onClick={() => setCurrentSlide(data)}
+            ></Box>
+          ))}
+        </HStack>
       <HStack spacing={6}>
         <CarouselButton
           label={"prevSlide"}
