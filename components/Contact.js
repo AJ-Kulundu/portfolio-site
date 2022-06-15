@@ -42,7 +42,7 @@ const ContactSchema = Yup.object().shape({
 function Contact({ userID, serviceID, templateID, userEmail }) {
   const toast = useToast();
   return (
-    <Stack minH={"60vh"} direction={{ base: "column", md: "row" }}>
+    <Stack minH={"60vh"} direction={{ base: "column", md: "row" }} id="contact">
       <Flex p={8} flex={1} justify={"center"} align={"center"}>
         <Stack spacing={4} w={"full"} maxW={"lg"}>
           <Heading>Contact me</Heading>

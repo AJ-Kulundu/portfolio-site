@@ -26,6 +26,7 @@ import {
   FaMediumM,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import NextLink from "next/link";
 
 const MotionText = motion(Text);
 const MButton = motion(IconButton);
@@ -61,12 +62,16 @@ const Navbar = () => {
         <Slide direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
           <Box p={4} bg={value}>
             <VStack spacing="25px" pb={10}>
-              <NavItem>Home</NavItem>
-              <NavItem>Projects</NavItem>
-              <NavItem>Skills</NavItem>
-              <NavItem>Contact</NavItem>
+              <NavItem href="/">Home</NavItem>
+              <NavItem href="/#projects">Projects</NavItem>
+              <NavItem href="/#skills">Skills</NavItem>
+              <NavItem href="/#contact">Contact</NavItem>
               <Stack direction={"row"} spacing={4}>
-                <SocialButton label={"Github link"} href={"https://github.com/AJ-Kulundu"} icon={<FaGithub />} />
+                <SocialButton
+                  label={"Github link"}
+                  href={"https://github.com/AJ-Kulundu"}
+                  icon={<FaGithub />}
+                />
                 <SocialButton
                   label={"LinkedIn link"}
                   href={"https://www.linkedin.com/in/james-kulundu-480034234/"}
@@ -97,10 +102,10 @@ const Navbar = () => {
           justify={{ base: "center", md: "space-between" }}
         >
           <HStack spacing="30px">
-            <NavItem>Home</NavItem>
-            <NavItem>Projects</NavItem>
-            <NavItem>Skills</NavItem>
-            <NavItem>Contact</NavItem>
+            <NavItem href="/">Home</NavItem>
+            <NavItem href="/#projects">Projects</NavItem>
+            <NavItem href="/#skills">Skills</NavItem>
+            <NavItem href="/#contact">Contact</NavItem>
             <Toggle />
           </HStack>
         </Flex>
@@ -109,10 +114,12 @@ const Navbar = () => {
   );
 };
 
-const NavItem = ({ children }) => {
+const NavItem = ({ href, children }) => {
   return (
     <MotionText whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
-      <Link>{children}</Link>
+      <NextLink href={href} passHref>
+        <Link>{children}</Link>
+      </NextLink>
     </MotionText>
   );
 };

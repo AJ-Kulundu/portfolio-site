@@ -14,8 +14,8 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
 
 function Project({ projects }) {
   return (
-    <VStack minH={"60vh"} px={10}>
-      <Flex justify={"flex-start"}>
+    <VStack minH={"60vh"} px={10} >
+      <Flex justify={"flex-start"} id="projects">
         <Heading>Projects</Heading>
       </Flex>
       <Flex justify={"flex-start"}>

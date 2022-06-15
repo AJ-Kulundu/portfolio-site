@@ -102,8 +102,8 @@ const MBox = motion(Box);
 function Skills() {
   const [selected, setSelected] = useState(0);
   return (
-    <VStack spacing={4} p={8} minH={"40vh"}>
-      <Flex px={4} width={"100%"} align={"flex-start"}>
+    <VStack spacing={4} p={8} minH={"40vh"} >
+      <Flex px={4} width={"100%"} align={"flex-start"} id="skills">
         <Heading>Skills</Heading>
       </Flex>
       <Tabs
