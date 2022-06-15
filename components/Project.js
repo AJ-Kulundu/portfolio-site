@@ -8,7 +8,6 @@ import {
   HStack,
   Badge,
   Stack,
-  Box,
 } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
@@ -35,7 +34,6 @@ function Project({ projects }) {
           {projects.map((data, id) => (
             <SwiperSlide key={id}>
               <Flex
-                justify="space-evenly"
                 w="full"
                 boxSize="full"
                 flex="none"
