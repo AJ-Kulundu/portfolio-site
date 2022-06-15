@@ -11,8 +11,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
-
+import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
 
 function Project({ projects }) {
   return (
@@ -24,20 +23,34 @@ function Project({ projects }) {
         <Text>Here are the projects I&apos;ve worked on so far.</Text>
       </Flex>
       <Flex w="full" overflow="hidden" pos="relative">
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        {projects.map((data, id) => (
-          <SwiperSlide key={id}>
-            <Box w="70vw" boxSize="full" shadow="md" flex="none">
-            <PCard
-              image={data.image}
-              caption={data.caption}
-              description={data.description}
-              category={data.categories}
-            />
-            </Box>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <Swiper
+          cssMode={true}
+          navigation={true}
+          pagination={true}
+          mousewheel={true}
+          keyboard={true}
+          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+          className="mySwiper"
+        >
+          {projects.map((data, id) => (
+            <SwiperSlide key={id}>
+              <Flex
+                justify="space-evenly"
+                w="full"
+                boxSize="full"
+                flex="none"
+                p={4}
+              >
+                <PCard
+                  image={data.image}
+                  caption={data.caption}
+                  description={data.description}
+                  category={data.categories}
+                />
+              </Flex>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </Flex>
     </VStack>
   );
@@ -49,7 +62,7 @@ const PCard = ({ image, caption, description, category }) => {
       <Flex
         borderWidth="1px"
         borderRadius="lg"
-        p={8}
+        p={6}
         maxW={"320px"}
         justify={"space-around"}
       >
