@@ -7,8 +7,9 @@ import {
   List,
   ListItem,
   ListIcon,
+  SimpleGrid,
 } from "@chakra-ui/react";
-import { FaReact,FaNodeJs,FaGitAlt } from "react-icons/fa";
+import { FaReact,FaNodeJs,FaGitAlt,FaCloud,FaPython,FaDatabase } from "react-icons/fa";
 import { SiTypescript,SiJavascript } from 'react-icons/si';
 const Skills = () => {
   return (
@@ -21,21 +22,32 @@ const Skills = () => {
           concepts, which I use to provide solutions to real world problems.
         </Text>
         <List>
+          <SimpleGrid columns={{base:1,md:2,lg:4}} spacingY={4}>
           <ListItem>
             <ListIcon as={FaReact} /> React{" "}
           </ListItem>
           <ListItem>
-            <ListIcon as={FaNodeJs} /> React{" "}
+            <ListIcon as={FaNodeJs} /> NodeJS{" "}
           </ListItem>
           <ListItem>
-            <ListIcon as={FaGitAlt} /> React{" "}
+            <ListIcon as={FaGitAlt} /> Git{" "}
           </ListItem>
           <ListItem>
-            <ListIcon as={SiTypescript} /> React{" "}
+            <ListIcon as={SiTypescript} /> TypeScript{" "}
           </ListItem>
           <ListItem>
-            <ListIcon as={FaReact} /> React{" "}
+            <ListIcon as={FaPython} /> Python{" "}
           </ListItem>
+          <ListItem>
+            <ListIcon as={SiJavascript} /> JavaScript{" "}
+          </ListItem>
+          <ListItem>
+            <ListIcon as={FaCloud} /> DevOps{" "}
+          </ListItem>
+          <ListItem>
+            <ListIcon as={FaDatabase} /> SQL & NoSQL{" "}
+          </ListItem>
+          </SimpleGrid>
         </List>
       </Flex>
     </Stack>
