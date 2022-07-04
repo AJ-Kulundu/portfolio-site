@@ -1,19 +1,19 @@
 import React from "react";
-import { Stack, Flex, Heading, Text, Button, HStack } from "@chakra-ui/react";
+import { Stack, Flex, Heading, Text, Button, HStack,Link } from "@chakra-ui/react";
 import Typical from "react-typical";
 import { motion } from "framer-motion";
 import { FaFileDownload } from "react-icons/fa";
 import { saveAs } from "file-saver";
 
 const MotionButton = motion(Button);
-const MStack = motion(Stack);
+
 
 function Home() {
   const saveFile = () => {
     saveAs("/AJ Kulundu resume.pdf", "AJ-reusme.pdf");
   };
   return (
-    <MStack
+    <Stack
       minH={"70vh"}
       direction={{ base: "column", md: "row" }}
       id="home"
@@ -49,7 +49,7 @@ function Home() {
             📚 Currently Learning Golang.
           </Text>
           <HStack spacing={"15px"}>
-            <CustomButton>Contact</CustomButton>
+            <CustomButton as={Link} href="/#contact">Contact</CustomButton>
             <CustomButton leftIcon={<FaFileDownload />} onClick={saveFile}>
               Resume
             </CustomButton>
@@ -59,7 +59,7 @@ function Home() {
       <Flex flex={1} align={"center"} display={{ base: "none", md: "block" }}>
         <Heading>AJ Kulundu</Heading>
       </Flex>
-    </MStack>
+    </Stack>
   );
 }
 
