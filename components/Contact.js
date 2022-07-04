@@ -192,7 +192,7 @@ function Contact({ userID, serviceID, templateID, userEmail }) {
               />
               <SocialButton
                 label={"Twitter Link"}
-                href={"https://twitter.com/Arnold_JK6"}
+                href={"https://twitter.com/AJKulundu"}
                 icon={<FaTwitter />}
               />
               <SocialButton
