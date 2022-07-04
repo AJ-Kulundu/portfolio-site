@@ -15,10 +15,10 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
 function Project({ projects }) {
   return (
     <VStack p={8} spacing={5} >
-      <Flex justify={"flex-start"} id="projects" w="full">
+      <Flex justify={"flex-start"} px={{lg:10}} id="projects" w="full">
         <Heading>Projects</Heading>
       </Flex>
-      <Flex justify={"flex-start"} w="full">
+      <Flex justify={"flex-start"} px={{lg:10}} w="full">
         <Text>Here are the projects I&apos;ve worked on so far.</Text>
       </Flex>
       <Flex w="full" overflow="hidden" pos="relative">
@@ -37,7 +37,7 @@ function Project({ projects }) {
                 w="full"
                 boxSize="full"
                 flex="none"
-                p={4}
+                p={{base:2,md:4,lg:8}}
               >
                 <PCard
                   image={data.image}
@@ -56,7 +56,7 @@ function Project({ projects }) {
 
 const PCard = ({ image, caption, description, category }) => {
   return (
-    <Stack direction={{ base: "column", md: "row" }} p={4} py={{sm:4,md:0}} mx={{md:10}}>
+    <Stack direction={{ base: "column", md: "row" }} p={4} py={{sm:4,md:4}} mx={{md:10}}>
       <Flex
         borderWidth="1px"
         borderRadius="lg"
