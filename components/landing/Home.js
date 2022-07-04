@@ -14,7 +14,7 @@ function Home() {
   };
   return (
     <Stack
-      minH={"70vh"}
+      minH={{md:"50vh",lg:"70vh"}}
       direction={{ base: "column", md: "row" }}
       id="home"
     >
