@@ -1,5 +1,14 @@
 import React from "react";
-import { Stack, Flex, Heading, Text, Button, HStack,Link } from "@chakra-ui/react";
+import Image from "next/image";
+import {
+  Stack,
+  Flex,
+  Heading,
+  Text,
+  Button,
+  HStack,
+  Link,
+} from "@chakra-ui/react";
 import Typical from "react-typical";
 import { motion } from "framer-motion";
 import { FaFileDownload } from "react-icons/fa";
@@ -7,18 +16,18 @@ import { saveAs } from "file-saver";
 
 const MotionButton = motion(Button);
 
-
 function Home() {
   const saveFile = () => {
     saveAs("/AJ Kulundu resume.pdf", "AJ-reusme.pdf");
   };
   return (
-    <Stack
-      minH={{md:"50vh",lg:"70vh"}}
+    <Flex
+      p={{ base: 4, md: 0, lg: 8 }}
+      minH={{ md: "50vh", lg: "70vh" }}
       direction={{ base: "column", md: "row" }}
       id="home"
     >
-      <Flex p={8} flex={1} justify={"center"} align={"center"}>
+      <Flex p={8} flex={1} justify={"start"} align={"center"}>
         <Stack spacing={4} w={"full"} maxW={"lg"}>
           <Text fontSize={{ base: "xl", md: "2xl", lg: "4xl" }}>
             Hello👋, I&apos;m
@@ -49,17 +58,16 @@ function Home() {
             📚 Currently Learning Golang.
           </Text>
           <HStack spacing={"15px"}>
-            <CustomButton as={Link} href="/#contact">Contact</CustomButton>
+            <CustomButton as={Link} href="/#contact">
+              Contact
+            </CustomButton>
             <CustomButton leftIcon={<FaFileDownload />} onClick={saveFile}>
               Resume
             </CustomButton>
           </HStack>
         </Stack>
       </Flex>
-      <Flex flex={1} align={"center"} display={{ base: "none", md: "block" }}>
-        <Heading>AJ Kulundu</Heading>
-      </Flex>
-    </Stack>
+    </Flex>
   );
 }
 
