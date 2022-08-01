@@ -17,7 +17,7 @@ const MotionButton = motion(Button);
 
 function Home() {
   const saveFile = () => {
-    saveAs("/AJ Kulundu resume.pdf", "AJ-reusme.pdf");
+    saveAs("/AJ Kulundu.pdf", "AJ-resume.pdf");
   };
   return (
     <Flex

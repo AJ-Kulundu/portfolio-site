@@ -40,15 +40,15 @@ export const getStaticProps = async () => {
       caption: " Avatar LAB",
       description:
         "This is a simple site that leverages the avatar-LAB(Last Air-Bender API) to display the avatar universe characters and their traits. The site uses NextJs for sever-side rendering and the next-Image component for lazy loading Images to better optimize the site.",
-      categories: ["React", "TS", "NextJS","TailwindCSS"],
+      categories: ["React", "TS", "NextJS", "TailwindCSS"],
       link: "https://avatar-lab.netlify.app",
     },
     {
       image: "/Capture3.PNG",
       caption: " Blog site",
       description:
-        "This is a simple blog site that leverages contentlayer. Contentlayer is a content SDK that validates and transforms content into type-safe JSON, which makes it easier for devleopers to work with content. Contentlayer greatly reduces the amount of work required to setup and maintain a blog.",
-      categories: ["React", "TS", "NextJS","TailwindCSS","ContentLayer"],
+        "This is a simple blog site that leverages contentlayer. Contentlayer is a content SDK that validates and transforms content into type-safe JSON, which makes it easier for devleopers to work with content.",
+      categories: ["React", "TS", "NextJS", "TailwindCSS", "ContentLayer"],
       link: "https://aj-blog-example.netlify.app",
     },
     {
@@ -56,7 +56,7 @@ export const getStaticProps = async () => {
       caption: " Cocktail directory",
       description:
         "This is a site that leveraged thecocktaildb.com API. It uses the API to search and display different cocktail on the website. The website also has a details page to show details of each cocktail on the site, including the ingridients and instructions on how to make the cocktails.",
-      categories: ["React", "NextJS", "TailwindCSS","React-Query"],
+      categories: ["React", "NextJS", "TailwindCSS", "React-Query"],
       link: "https://cocktails-ditcionary.netlify.app",
     },
   ];

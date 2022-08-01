@@ -10,7 +10,7 @@ import {
   Badge,
   Stack,
   Link,
-  HStack,
+  Button,
 } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
@@ -105,17 +105,18 @@ const PCard = ({ image, caption, description, category, link }) => {
       </Flex>
       <Flex
         pr={{ md: 4 }}
-        align={"center"}
+        align={"start"}
         justify={"center"}
         px={8}
         maxW={"480px"}
+        direction="column"
       >
-        <Text>
-          {description}{" "}
-          <NextLink href={link} passHref>
-            <Link isExternal>View Demo here.</Link>
-          </NextLink>
-        </Text>
+        <Text>{description} </Text>
+        <NextLink href={link} passHref>
+          <Button as={Link} mt={{base:2, md:4}} isExternal>
+            View Demo
+          </Button>
+        </NextLink>
       </Flex>
     </Stack>
   );
