@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import {
   Stack,
   Flex,
@@ -22,7 +21,7 @@ function Home() {
   };
   return (
     <Flex
-      p={{ base: 4, md: 0, lg: 8 }}
+      p={{lg: 8 }}
       minH={{ md: "50vh", lg: "70vh" }}
       direction={{ base: "column", md: "row" }}
       id="home"

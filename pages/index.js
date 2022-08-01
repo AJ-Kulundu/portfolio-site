@@ -3,11 +3,17 @@ import Contact from "../components/Contact";
 import Skills from "../components/Skills";
 import Project from "../components/Project";
 
-export default function Home({ user_id, service, template_id,user_email,projects }) {
+export default function Home({
+  user_id,
+  service,
+  template_id,
+  user_email,
+  projects,
+}) {
   return (
     <div>
       <Landing />
-      <Project projects={projects}/>
+      <Project projects={projects} />
       <Skills />
       <Contact
         userID={user_id}
@@ -19,39 +25,39 @@ export default function Home({ user_id, service, template_id,user_email,projects
   );
 }
 
-export const getServerSideProps =  async() => {
+export const getStaticProps = async () => {
   const projects = [
     {
-      image:
-        "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      caption: " web application",
+      image: "/Capture.PNG",
+      caption: " Crypto Info",
       description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invi dunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum",
-      categories: ["js", "ts", "swift", "flutter"],
+        "This website leverages the coinRanking API to display different cryptocurrencies. It uses redux-toolkit to manage state and query data.",
+      categories: ["React", "Redux-Toolkit", "Chakra-UI"],
+      link: "https://cryptoinfo-app1.netlify.app",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      caption: " web application",
+      image: "/Capture2.PNG",
+      caption: " Avatar LAB",
       description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invi dunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum",
-      categories: ["js", "ts", "swift"],
+        "This is a simple site that leverages the avatar-LAB(Last Air-Bender API) to display the avatar universe characters and their traits. The site uses NextJs for sever-side rendering and the next-Image component for lazy loading Images to better optimize the site.",
+      categories: ["React", "TS", "NextJS","TailwindCSS"],
+      link: "https://avatar-lab.netlify.app",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      caption: " web application",
+      image: "/Capture3.PNG",
+      caption: " Blog site",
       description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invi dunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum",
-      categories: ["js", "ts", "swift"],
+        "This is a simple blog site that leverages contentlayer. Contentlayer is a content SDK that validates and transforms content into type-safe JSON, which makes it easier for devleopers to work with content. Contentlayer greatly reduces the amount of work required to setup and maintain a blog.",
+      categories: ["React", "TS", "NextJS","TailwindCSS","ContentLayer"],
+      link: "https://aj-blog-example.netlify.app",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      caption: " web application",
+      image: "/Capture4.PNG",
+      caption: " Cocktail directory",
       description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invi dunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum",
-      categories: ["js", "ts", "swift"],
+        "This is a site that leveraged thecocktaildb.com API. It uses the API to search and display different cocktail on the website. The website also has a details page to show details of each cocktail on the site, including the ingridients and instructions on how to make the cocktails.",
+      categories: ["React", "NextJS", "TailwindCSS","React-Query"],
+      link: "https://cocktails-ditcionary.netlify.app",
     },
   ];
   return {
@@ -60,7 +66,7 @@ export const getServerSideProps =  async() => {
       template_id: process.env.EMAILJS_TEMPLATEID,
       service: process.env.EMAILJS_SERVICEID,
       user_email: process.env.MY_EMAIL,
-      projects
+      projects,
     },
   };
 };

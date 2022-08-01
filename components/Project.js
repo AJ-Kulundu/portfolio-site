@@ -1,11 +1,11 @@
 import React from "react";
+import Image from "next/image";
 import {
   Heading,
   Flex,
   Text,
   VStack,
-  Img,
-  HStack,
+  SimpleGrid,
   Badge,
   Stack,
 } from "@chakra-ui/react";
@@ -14,11 +14,11 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
 
 function Project({ projects }) {
   return (
-    <VStack p={8} spacing={5} >
-      <Flex justify={"flex-start"} px={{lg:10}} id="projects" w="full">
+    <VStack p={{ base: 4, md: 6, lg: 8 }} spacing={5}>
+      <Flex justify={"flex-start"} px={{ lg: 10 }} id="projects" w="full">
         <Heading>Projects</Heading>
       </Flex>
-      <Flex justify={"flex-start"} px={{lg:10}} w="full">
+      <Flex justify={"flex-start"} px={{ lg: 10 }} w="full">
         <Text>Here are the projects I&apos;ve worked on so far.</Text>
       </Flex>
       <Flex w="full" overflow="hidden" pos="relative">
@@ -37,7 +37,7 @@ function Project({ projects }) {
                 w="full"
                 boxSize="full"
                 flex="none"
-                p={{base:2,md:4,lg:8}}
+                p={{ base: 2, md: 4, lg: 8 }}
               >
                 <PCard
                   image={data.image}
@@ -56,44 +56,47 @@ function Project({ projects }) {
 
 const PCard = ({ image, caption, description, category }) => {
   return (
-    <Stack direction={{ base: "column", md: "row" }} p={4} py={{sm:4,md:4}} mx={{md:10}}>
+    <Stack
+      direction={{ base: "column", md: "row" }}
+      p={4}
+      py={{ sm: 4, md: 4 }}
+      mx={{ md: 10 }}
+    >
       <Flex
         borderWidth="1px"
         borderRadius="lg"
         p={6}
-        maxW={"320px"}
+        minW={"320px"}
         justify={"space-around"}
       >
         <VStack>
-          <Img
-            src={image}
-            alt={caption}
-            objectFit="cover"
-            boxSize="100%"
-            borderRadius={"lg"}
-          />
+          <Image src={image} alt={caption} width={400} height={300} />
           <Heading>{caption}</Heading>
-          <HStack>
+          <SimpleGrid columns={2} spacing={{ base: 2, md: 4 }}>
             {category.map((data, id) => (
               <Badge
                 key={id}
                 variant="outline"
                 colorScheme={
-                  data === "react"
+                  data === "React"
                     ? "facebook"
-                    : data === "js"
-                    ? "twitter"
-                    : data === "ts"
+                    : data === "TailwindCSS"
+                    ? "teal"
+                    : data === "TS"
                     ? "telegram"
-                    : data === "swift"
+                    : data === "NextJS"
                     ? "cyan"
+                    : data === "React-Query"
+                    ? "red"
+                    : data === "Redux-Toolkit"
+                    ? "orange"
                     : "purple"
                 }
               >
                 #{data}
               </Badge>
             ))}
-          </HStack>
+          </SimpleGrid>
         </VStack>
       </Flex>
       <Flex
