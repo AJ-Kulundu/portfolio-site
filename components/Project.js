@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import NextLink from "next/link";
 import {
   Heading,
   Flex,
@@ -8,6 +9,8 @@ import {
   SimpleGrid,
   Badge,
   Stack,
+  Link,
+  HStack,
 } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
@@ -44,6 +47,7 @@ function Project({ projects }) {
                   caption={data.caption}
                   description={data.description}
                   category={data.categories}
+                  link={data.link}
                 />
               </Flex>
             </SwiperSlide>
@@ -54,7 +58,7 @@ function Project({ projects }) {
   );
 }
 
-const PCard = ({ image, caption, description, category }) => {
+const PCard = ({ image, caption, description, category, link }) => {
   return (
     <Stack
       direction={{ base: "column", md: "row" }}
@@ -106,7 +110,12 @@ const PCard = ({ image, caption, description, category }) => {
         px={8}
         maxW={"480px"}
       >
-        <Text>{description}</Text>
+        <Text>
+          {description}{" "}
+          <NextLink href={link} passHref>
+            <Link isExternal>View Demo here.</Link>
+          </NextLink>
+        </Text>
       </Flex>
     </Stack>
   );
