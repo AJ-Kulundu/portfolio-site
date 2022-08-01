@@ -45,12 +45,11 @@ function Contact({ userID, serviceID, templateID, userEmail }) {
     <Stack minH={"60vh"} direction={{ base: "column", md: "row" }} id="contact">
       <Flex p={8} flex={1} justify={"center"} align={"center"}>
         <Stack spacing={4} w={"full"} maxW={"lg"}>
-          <Heading>Contact me</Heading>
+          <Heading>Let&apos;s Build Togther</Heading>
           <Text>
             {" "}
-            I am interested in working on projects, especially large and
-            ambitious projects. You can also contact me for other questions and
-            requests using the form below.{" "}
+            You can reach out to me if you are looking for a developer, have
+            questions or if you want to connect.{" "}
           </Text>
           <Formik
             initialValues={{
