@@ -1,11 +1,7 @@
 import React from "react";
 import { Stack, Text } from "@chakra-ui/react";
-import { FaGithub, FaLinkedinIn, FaTwitter, FaMediumM } from "react-icons/fa";
 
-
-
-
-function Footer() {
+const Footer = () => {
   return (
     <Stack
       direction={{ base: "column", lg: "row" }}
