@@ -15,7 +15,7 @@ import { saveAs } from "file-saver";
 
 const MotionButton = motion(Button);
 
-function Home() {
+const Home = () =>  {
   const saveFile = () => {
     saveAs("/AJ Kulundu.pdf", "AJ-resume.pdf");
   };
@@ -70,7 +70,7 @@ function Home() {
   );
 }
 
-const CustomButton = ({ children, ...rest }) => {
+const CustomButton = ({ children, ...rest }:any) => {
   return (
     <MotionButton
       whileHover={{ scale: 1.2 }}
