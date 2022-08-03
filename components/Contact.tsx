@@ -39,7 +39,7 @@ const ContactSchema = Yup.object().shape({
   message: Yup.string().required("A message is required"),
 });
 
-function Contact({ userID, serviceID, templateID, userEmail }) {
+function Contact({ userID, serviceID, templateID, userEmail }:any) {
   const toast = useToast();
   return (
     <Stack minH={"60vh"} direction={{ base: "column", md: "row" }} id="contact">
@@ -207,7 +207,7 @@ function Contact({ userID, serviceID, templateID, userEmail }) {
   );
 }
 
-const SocialButton = ({ icon, href, label }) => {
+const SocialButton = ({ icon, href, label }:any) => {
   return (
     <MButton
       aria-label={label}

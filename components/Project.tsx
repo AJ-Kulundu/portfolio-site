@@ -15,7 +15,7 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
 
-function Project({ projects }) {
+function Project({ projects }:any) {
   return (
     <VStack p={{ base: 4, md: 6, lg: 8 }} spacing={5}>
       <Flex justify={"flex-start"} px={{ lg: 10 }} id="projects" w="full">
@@ -58,7 +58,7 @@ function Project({ projects }) {
   );
 }
 
-const PCard = ({ image, caption, description, category, link }) => {
+const PCard = ({ image, caption, description, category, link }:any) => {
   return (
     <Stack
       direction={{ base: "column", md: "row" }}
