@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import {AppProps} from 'next/app';
+import type {AppProps} from 'next/app';
 
 
 function MyApp({ Component, pageProps }:AppProps) {

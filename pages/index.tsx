@@ -1,15 +1,16 @@
+import type {NextPage, GetStaticProps} from 'next';
 import Landing from "../components/landing/Home";
 import Contact from "../components/Contact";
 import Skills from "../components/Skills";
 import Project from "../components/Project";
 
-export default function Home({
+const Home:NextPage = ({
   user_id,
   service,
   template_id,
   user_email,
   projects,
-}) {
+}) => {
   return (
     <div>
       <Landing />
@@ -25,7 +26,7 @@ export default function Home({
   );
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps:GetStaticProps = async () => {
   const projects = [
     {
       image: "/Capture.PNG",
@@ -70,3 +71,6 @@ export const getStaticProps = async () => {
     },
   };
 };
+
+
+export default Home;
