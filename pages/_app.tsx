@@ -1,14 +1,15 @@
 import "../src/theme/styles.css";
-import Layout from "../components/Layout.tsx";
-import Navbar from "../components/Navbar.tsx";
-import Header from '../components/Header.tsx';
-import Footer from '../components/Footer.tsx';
+import Layout from "../components/Layout";
+import Navbar from "../components/Navbar";
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import {AppProps} from 'next/app';
 
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }:AppProps) {
   return (
     <Layout>
       <Header />
