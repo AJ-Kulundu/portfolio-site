@@ -1,7 +1,7 @@
 import "../src/theme/styles.css";
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar.js";
-import Header from '../components/Header';
+import Header from '../components/Header.tsx';
 import Footer from '../components/Footer.tsx';
 import 'swiper/css';
 import 'swiper/css/navigation';
