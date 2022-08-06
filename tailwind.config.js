@@ -4,11 +4,9 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
-    fontFamily:{
-      'sans':['"Work Sans"', ...defaultTheme.fontFamily.sans]
-    },
     extend: {},
   },
   plugins: [],
-}
+};
