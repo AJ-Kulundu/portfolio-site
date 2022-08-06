@@ -2,9 +2,11 @@ import type { NextPage } from 'next';
 
 const Home:NextPage = () => {
     return(
-        <h1 className="text-3xl font-bold underline">
+      <div className='flex w-full justify-center'>
+        <h1 className="text-xl font-semibold">
         Hello world!
       </h1>
+      </div>
     );
 }
 
