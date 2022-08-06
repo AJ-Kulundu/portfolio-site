@@ -1,10 +1,27 @@
 import type {NextPage, GetStaticProps} from 'next';
-import Landing from "../components/landing/Home";
-import Contact from "../components/Contact";
-import Skills from "../components/Skills";
-import Project from "../components/Project";
+import Landing from "@components/landing/Home";
+import Contact from "@components/Contact";
+import Skills from "@components/Skills";
+import Project from "@components/Project";
 
-const Home:NextPage = ({
+type Project = {
+  image:string,
+  caption:string,
+  description:string,
+  categories:string[],
+  link:string
+}
+
+type Home  = {
+  user_id: string,
+  service: string,
+  template_id: string,
+  user_email: string,
+  projects: Project[]
+}
+
+
+const Home:NextPage<Home> = ({
   user_id,
   service,
   template_id,
