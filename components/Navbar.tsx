@@ -114,7 +114,7 @@ const Navbar = () => {
   );
 };
 
-const NavItem = ({ href, children }) => {
+const NavItem = ({ href, children }:any) => {
   return (
     <MotionText whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
       <NextLink href={href} passHref>
@@ -136,7 +136,7 @@ const Toggle = () => {
   );
 };
 
-const SocialButton = ({ icon, href, label }) => {
+const SocialButton = ({ icon, href, label }:any) => {
   return (
     <MButton
       aria-label={label}
