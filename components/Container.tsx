@@ -1,6 +1,8 @@
-import React,{FC} from 'react';
+import React,{FC,useState,useEffect} from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import {SunIcon,MoonIcon} from '@heroicons/react/outline';
+import { useTheme } from 'next-themes';
 
 const NavItem = ({href,children}:any) => {
     return(
@@ -20,6 +22,31 @@ const Container:FC = (props) => {
         type:'website',
         ...customMeta
     }
+    const [isMounted,setIsMounted] = useState(false);
+    const {systemTheme,setTheme,theme} = useTheme();
+    useEffect(()=>{setIsMounted(true),[isMounted]}) 
+
+    const renderTheme = () => {
+        if(!isMounted) return null;
+         
+        const currentTheme = theme == "system"? systemTheme : theme; 
+
+        if (currentTheme == "light"){
+          return <MoonIcon 
+          className='w-6 h-6 text-neutral-800 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100'
+          onClick={()=>setTheme('dark')}
+          role='button'
+          />
+        }else{
+          return <SunIcon
+          className='w-6 h-6 text-neutral-800 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100'
+          onClick={()=>setTheme('light')}
+          role='button' />
+        }
+
+    }
+
+
 
     return(
         <div className="bg-neutral-100 dark:bg-neutral-900">
@@ -38,7 +65,7 @@ const Container:FC = (props) => {
                     <NavItem href="/blogs">Blog</NavItem>
                     <NavItem href="/tweets">Tweets</NavItem>
                 </div>
-                <button className="p-2 bg-neutral-300 rounded-lg">Theme</button>
+                {renderTheme()}
             </nav>
             <main id="skip"
              className="flex flex-col justify-center px-8 bg-gray-50 dark:bg-gray-900">
