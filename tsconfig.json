@@ -18,7 +18,8 @@
       "@components/*":["components/*"],
       "@libs/*":["libs/*"],
       "@styles/*":["styles/*"],
-      "@public/*":["public/*"]
+      "@public/*":["public/*"],
+      "@models/*":["models/*"]
     },
     "incremental": true
   },
