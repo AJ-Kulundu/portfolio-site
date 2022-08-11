@@ -1,16 +1,14 @@
-import type { NextPage } from 'next';
-import Container from '@components/Container'
+import type { NextPage } from "next"
+import Container from "@components/Container"
 
-const Tweets:NextPage = () => {
-    return(
-      <Container>
-      <div className='flex w-full justify-center mx-auto'>
-        <h1 className="text-xl font-semibold">
-        Inspirational Tweets
-      </h1>
+const Tweets: NextPage = () => {
+  return (
+    <Container>
+      <div className="flex w-full justify-center mx-auto">
+        <h1 className="text-xl font-semibold">Inspirational Tweets</h1>
       </div>
-      </Container>
-    );
+    </Container>
+  )
 }
 
-export default Tweets;
+export default Tweets
