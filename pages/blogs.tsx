@@ -1,16 +1,16 @@
 import type { NextPage } from 'next';
 import Container from '@components/Container'
 
-const Home:NextPage = () => {
+const Blogs:NextPage = () => {
     return(
       <Container>
       <div className='flex w-full justify-center mx-auto'>
         <h1 className="text-xl font-semibold">
-        Hello world!
+        Blogs Page
       </h1>
       </div>
       </Container>
     );
 }
 
-export default Home;
+export default Blogs;
