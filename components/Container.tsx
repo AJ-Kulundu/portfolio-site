@@ -3,6 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 import { SunIcon, MoonIcon } from "@heroicons/react/outline"
 import { useTheme } from "next-themes"
+import Footer from "./Footer"
 
 const NavItem = ({ href, children }: { href: string; children: string }) => {
   return (
@@ -74,6 +75,7 @@ const Container: FC = (props) => {
         <main className="flex flex-col justify-center bg-neutral-100 dark:bg-neutral-900">
           {children}
         </main>
+        <Footer />
       </div>
     </div>
   )
