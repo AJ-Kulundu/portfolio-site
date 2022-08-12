@@ -4,14 +4,16 @@ import { queryTweets } from "@libs/twitter"
 import { Tweet } from "@components/Tweet"
 
 export const getStaticProps: GetStaticProps = async () => {
-  const tweetIds = ["1548801581016969217",
-  "1544216078875648000",
-  "1479115290579374090",
-  "1519359624264417286",
-  "1557135536686616580",
-  "1541782558756818944",
-  "1451606778676908039",]
-  
+  const tweetIds = [
+    "1548801581016969217",
+    "1544216078875648000",
+    "1479115290579374090",
+    "1519359624264417286",
+    "1557135536686616580",
+    "1541782558756818944",
+    "1451606778676908039",
+  ]
+
   const tweets = await queryTweets(tweetIds)
   return {
     props: {

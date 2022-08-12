@@ -1,5 +1,5 @@
 import type { FormattedTweet } from "@models/twitter"
-import LazyImage from "./LazyImage";
+import LazyImage from "./LazyImage"
 import { BadgeCheckIcon } from "@heroicons/react/outline"
 import Image from "next/image"
 
@@ -32,7 +32,7 @@ export const Tweet = ({
             className="rounded-full"
           />
           <div className="ml-2 flex flex-col md:ml-4 md:flex-row">
-            <span className="flex flex-row items-center truncate font-semibold mr-1">
+            <span className="mr-1 flex flex-row items-center truncate font-semibold">
               {author.name}
               {author.verified ? (
                 <BadgeCheckIcon className="h-5 w-5 text-blue-400" />
@@ -49,30 +49,32 @@ export const Tweet = ({
         <div className="mt-4">
           {media.map((media) => (
             <div key={media.media_key}>
-              <LazyImage src={media.preview_image_url || media.url} alt={media.alt_text} height={media.height} width={media.width} className="rounded-lg"/>
+              <LazyImage
+                src={media.preview_image_url || media.url}
+                alt={media.alt_text}
+                height={media.height}
+                width={media.width}
+                className="rounded-lg"
+              />
             </div>
           ))}
         </div>
       ) : null}
       {showAttachments && linkPreview ? (
         <div className="mt-4 rounded-xl shadow-md">
-           <div className="text-sm">
-           {linkPreview.display_url.split("/")[0]}
-           </div>
-           <div className="text-base">{linkPreview.title}</div>
-           <div className="text-base">{linkPreview.description}</div>
+          <div className="text-sm">{linkPreview.display_url.split("/")[0]}</div>
+          <div className="text-base">{linkPreview.title}</div>
+          <div className="text-base">{linkPreview.description}</div>
         </div>
-      ):null}
-      {showAttachments && quoteTweet?(
+      ) : null}
+      {showAttachments && quoteTweet ? (
         <div className="mt-4">
           <Tweet {...quoteTweet} />
         </div>
-      ): null}
+      ) : null}
       <div className="mt-4">
-      {type !== "quoted"?(<span >{createdAt}</span>
-        ):null}
-        </div>
+        {type !== "quoted" ? <span>{createdAt}</span> : null}
+      </div>
     </div>
   )
 }
-
