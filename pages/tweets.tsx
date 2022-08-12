@@ -23,7 +23,6 @@ export const getStaticProps: GetStaticProps = async () => {
 const Tweets: NextPage = ({
   tweets,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(tweets)
   return (
     <Container>
       <div className="mx-auto max-w-2xl space-y-5 py-6">

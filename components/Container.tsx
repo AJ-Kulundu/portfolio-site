@@ -4,10 +4,10 @@ import Link from "next/link"
 import { SunIcon, MoonIcon } from "@heroicons/react/outline"
 import { useTheme } from "next-themes"
 
-const NavItem = ({ href, children }: any) => {
+const NavItem = ({ href, children }: { href: string; children: string }) => {
   return (
     <Link href={href} passHref>
-      <a className="text-lg font-semibold md:tracking-wide ">{children}</a>
+      <a className="text-lg font-semibold md:tracking-wide">{children}</a>
     </Link>
   )
 }
@@ -60,19 +60,18 @@ const Container: FC = (props) => {
         <meta name="twitter:site" content="@AJKulundu" />
         <meta name="robots" content="follow, index" />
       </Head>
-      <div className="flex flex-col justify-center px-8">
-        <nav className="relative mx-auto flex w-full max-w-2xl items-center justify-between bg-neutral-100 py-6 dark:bg-neutral-900">
+      <div className="flex w-full flex-col justify-center px-8">
+        <nav className="relative mx-auto flex w-full max-w-2xl flex-row items-center justify-between bg-neutral-100 py-6  dark:bg-neutral-900">
           <div className="flex flex-row items-center gap-x-4">
             <NavItem href="/">Home</NavItem>
             <NavItem href="/blogs">Blog</NavItem>
             <NavItem href="/tweets">Tweets</NavItem>
           </div>
-          {renderTheme()}
+          <div className="rounded-xl bg-neutral-200/50 p-2 dark:bg-neutral-800/50">
+            {renderTheme()}
+          </div>
         </nav>
-        <main
-          id="skip"
-          className="flex flex-col justify-center bg-gray-50 px-8 dark:bg-gray-900"
-        >
+        <main className="flex flex-col justify-center bg-neutral-100 dark:bg-neutral-900">
           {children}
         </main>
       </div>
