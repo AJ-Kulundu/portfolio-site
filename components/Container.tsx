@@ -65,7 +65,7 @@ const Container: FC = (props) => {
         <nav className="relative mx-auto flex w-full max-w-2xl flex-row items-center justify-between bg-neutral-100 py-6  dark:bg-neutral-900">
           <div className="flex flex-row items-center gap-x-4">
             <NavItem href="/">Home</NavItem>
-            <NavItem href="/blogs">Blog</NavItem>
+            <NavItem href="/blog">Blog</NavItem>
             <NavItem href="/tweets">Tweets</NavItem>
           </div>
           <div className="rounded-xl bg-neutral-200/50 p-2 dark:bg-neutral-800/50">

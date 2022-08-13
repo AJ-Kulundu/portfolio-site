@@ -16,7 +16,7 @@ const Footer = () => {
     <div className=" grid grid-cols-1 gap-y-4 md:grid-cols-3">
       <div className="flex flex-col space-y-2 md:space-y-4">
         <FooterLink href="/">Home</FooterLink>
-        <FooterLink href="/blogs">Blog</FooterLink>
+        <FooterLink href="/blog">Blog</FooterLink>
         <FooterLink href="/tweets">Tweets</FooterLink>
       </div>
       <div className="flex flex-col space-y-2 md:space-y-4">
