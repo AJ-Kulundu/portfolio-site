@@ -1,11 +1,28 @@
-import type { NextPage } from "next"
+import type { NextPage, InferGetStaticPropsType } from "next"
 import Container from "@components/Container"
+import Link from "next/link"
+import { compareDesc } from "date-fns"
+import { allBlogs, Blog } from "contentlayer/generated"
+import BlogCard from "@components/BlogCard"
 
-const Blogs: NextPage = () => {
+export const getStaticProps = async () => {
+  const blogs: Blog[] = allBlogs.sort((a: any, b: any) => {
+    return compareDesc(new Date(a.date), new Date(b.date))
+  })
+  return {
+    props: { blogs },
+  }
+}
+
+const Blogs = ({ blogs }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log(blogs)
   return (
     <Container>
-      <div className="mx-auto flex w-full justify-center">
-        <h1 className="text-xl font-semibold">Blogs Page</h1>
+      <div className="mx-auto max-w-2xl space-y-5 py-6">
+        <h1 className="text-3xl font-semibold tracking-wide">Blogs Page</h1>
+        {blogs.map((blog: Blog) => (
+          <BlogCard key={blog._id} blog={blog} />
+        ))}
       </div>
     </Container>
   )
