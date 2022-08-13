@@ -19,10 +19,11 @@
       "@libs/*":["libs/*"],
       "@styles/*":["styles/*"],
       "@public/*":["public/*"],
-      "@models/*":["models/*"]
+      "@models/*":["models/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx",".contentlayer/generated"],
   "exclude": ["node_modules"]
 }
