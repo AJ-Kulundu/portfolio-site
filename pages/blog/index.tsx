@@ -1,6 +1,4 @@
-import type { NextPage, InferGetStaticPropsType } from "next"
 import Container from "@components/Container"
-import Link from "next/link"
 import { compareDesc } from "date-fns"
 import { allBlogs, Blog } from "contentlayer/generated"
 import BlogCard from "@components/BlogCard"
@@ -14,8 +12,7 @@ export const getStaticProps = async () => {
   }
 }
 
-const Blogs = ({ blogs }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(blogs)
+const Blogs = ({ blogs }: {blogs: Blog[]}) => {
   return (
     <Container>
       <div className="mx-auto max-w-2xl space-y-5 py-6">
