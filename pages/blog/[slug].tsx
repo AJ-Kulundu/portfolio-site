@@ -30,7 +30,7 @@ function BlogLayout({ blog }: { blog: Blog }) {
             {formattedDate(blog.date)}
           </span>
         </div>
-        <article className="prose prose-h2:text-4xl prose-h2:tracking-wide prose-p:text-lg prose-p:font-medium prose-li:font-medium prose-p:text-black dark:prose-invert dark:prose-p:text-white prose-li:text-black dark:prose-li:text-white marker:text-black dark:marker:text-white">
+        <article className="prose prose-h2:text-4xl prose-h2:tracking-wide prose-p:text-lg prose-p:font-medium prose-li:font-medium prose-p:text-black dark:prose-invert dark:prose-p:text-white prose-li:text-black dark:prose-li:text-white marker:text-black dark:marker:text-white prose-hr:border-2 prose-hr:opacity-60 prose-a:no-underline">
           {blog && MDXContent ? (<MDXContent />): <h1>No blog posts</h1>}
         </article>
       </div>
