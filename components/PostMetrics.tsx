@@ -1,16 +1,25 @@
-import React,{useEffect} from 'react';
-import {useBlogViews} from '@libs/useBlogViews';
+import React, { useEffect } from "react"
+import { useBlogViews } from "@libs/useBlogViews"
+import { Loading } from "./Loading"
 
-const PostMetrics = ({slug}:{slug:string}) => {
-const {views,isError,isLoading,increment} = useBlogViews(slug,{revalidateOnMount:false})
+const PostMetrics = ({ slug }: { slug: string }) => {
+  const { views, isError, isLoading, increment } = useBlogViews(slug, {
+    revalidateOnMount: false,
+  })
 
-useEffect(() => increment(),[])
+  useEffect(() => increment(), [])
 
-return(
+  return (
     <>
-    {isError || isLoading? <p className="text-neutral-900/50 dark:text-neutral-100/50">Loading...</p>: (<span className="text-neutral-900/50 dark:text-neutral-100/50">{views}views</span>)}
+      {isError || isLoading ? (
+        <Loading />
+      ) : (
+        <span className="text-neutral-900/50 dark:text-neutral-100/50">
+          {views} views
+        </span>
+      )}
     </>
-)
+  )
 }
 
-export default PostMetrics;
+export default PostMetrics

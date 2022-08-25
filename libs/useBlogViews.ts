@@ -1,43 +1,50 @@
-import useSWR,{SWRConfiguration} from 'swr';
+import useSWR, { SWRConfiguration } from "swr"
 
-const API_URL = `/api/views`;
+const API_URL = `/api/views`
 
-async function getBlogViews (slug:string): Promise<number>{
-  const res = await fetch(API_URL+`/${slug}`);
+async function getBlogViews(slug: string): Promise<number> {
+  const res = await fetch(API_URL + `/${slug}`)
 
-  if(!res.ok){
+  if (!res.ok) {
     throw new Error("An error occurred while fetching the data")
   }
 
   return res.json()
 }
 
-async function updateBlogViews(slug:string): Promise<number>{
-    const res = await fetch(API_URL+`/${slug}`,{method:'POST'});
+async function updateBlogViews(slug: string): Promise<number> {
+  const res = await fetch(API_URL + `/${slug}`, { method: "POST" })
 
-    if(!res.ok){
-        throw new Error("An error occurred while updating the data")
-    }
-     
-    return res.json()
+  if (!res.ok) {
+    throw new Error("An error occurred while updating the data")
+  }
+
+  return res.json()
 }
 
-export const useBlogViews = (slug:string, config?:SWRConfiguration) => {
-   const {data:views,error,mutate}= useSWR<number>([API_URL,slug],() => getBlogViews(slug),{dedupingInterval:600000,...config})
+export const useBlogViews = (slug: string, config?: SWRConfiguration) => {
+  const {
+    data: views,
+    error,
+    mutate,
+  } = useSWR<number>([API_URL, slug], () => getBlogViews(slug), {
+    dedupingInterval: 600000,
+    ...config,
+  })
 
-   const increment = () => {
-       mutate(
-        updateBlogViews(slug).catch((e) =>{
-            console.log(e)
-            return 0;
-        })
-       )
-   }
+  const increment = () => {
+    mutate(
+      updateBlogViews(slug).catch((e) => {
+        console.log(e)
+        return 0
+      }),
+    )
+  }
 
-   return{
+  return {
     views,
     isLoading: !error && !views,
-    isError : !!error,
-    increment
-   }
+    isError: !!error,
+    increment,
+  }
 }

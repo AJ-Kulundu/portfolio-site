@@ -12,7 +12,7 @@ export const getStaticProps = async () => {
   }
 }
 
-const Blogs = ({ blogs }: {blogs: Blog[]}) => {
+const Blogs = ({ blogs }: { blogs: Blog[] }) => {
   return (
     <Container>
       <div className="mx-auto max-w-2xl space-y-5 py-6">
