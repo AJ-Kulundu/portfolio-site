@@ -13,9 +13,14 @@ module.exports = {
         "0%,100%": {
           opacity: ".3",
         },
-        "40%": {
+        "25%":{
+          transform: "translateY(1px) ",
+        },
+        "50%": {
           opacity: "1",
-          transform: "translateY(2px) ",
+        },
+        "75%":{
+          transform: "translateY(-1px) ",
         },
       }
     })
