@@ -21,21 +21,13 @@ const PostMetrics = ({ slug }: { slug: string }) => {
   useEffect(() => viewsIncrement(), [])
 
   return (
-    <div className="space-x-4">
-      {viewsError || viewsLoading ? (
-        <Loading />
-      ) : (
-        <span className="text-neutral-900/50 dark:text-neutral-100/50">
-          {views} views
-        </span>
-      )}
-      {likesLoading || likesError ? (
-        <Loading />
-      ) : (
-        <span className="text-neutral-900/50 dark:text-neutral-100/50">
-          {likes} likes
-        </span>
-      )}
+    <div className="flex flex-row items-center space-x-4">
+      <span className="flex flex-row text-neutral-900/50 dark:text-neutral-100/50">
+        {viewsError || viewsLoading ? <Loading /> : views} views
+      </span>
+      <span className="flex flex-row text-neutral-900/50 dark:text-neutral-100/50">
+        {likesLoading || likesError ? <Loading /> : likes} likes
+      </span>
     </div>
   )
 }
