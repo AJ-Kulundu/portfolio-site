@@ -158,7 +158,7 @@ const Container: FC = (props) => {
             <NavItem href="/blog">Blog</NavItem>
             <NavItem href="/tweets">Tweets</NavItem>
           </div>
-          <AnimatePresence mode="wait">{renderTheme()}</AnimatePresence>
+          <AnimatePresence initial={false} mode="wait">{renderTheme()}</AnimatePresence>
         </nav>
         <main className="flex flex-col justify-center bg-neutral-100 dark:bg-neutral-900">
           {children}

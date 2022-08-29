@@ -29,7 +29,7 @@ const LikeButton = ({ slug }: { slug: string }) => {
               },
             )}
           />
-          <HeartIcon className=" relative h-6 w-6 text-neutral-900/50 dark:text-neutral-100/50" />
+          <HeartIcon className={`relative h-6 w-6 text-neutral-900/50 dark:text-neutral-100/50 ${likesLoading?`animate-pulse`:null}`} />
         </div>
       </button>
       <span className="flex flex-row text-neutral-900/70 dark:text-neutral-100/70">
