@@ -25,6 +25,9 @@ const PostMetrics = ({ slug }: { slug: string }) => {
       <span className="flex flex-row text-neutral-900/50 dark:text-neutral-100/50">
         {viewsError || viewsLoading ? <Loading /> : views} views
       </span>
+      <div className="text-neutral-900/50 dark:text-neutral-100/50">
+        &middot;
+      </div>
       <span className="flex flex-row text-neutral-900/50 dark:text-neutral-100/50">
         {likesLoading || likesError ? <Loading /> : likes} likes
       </span>
