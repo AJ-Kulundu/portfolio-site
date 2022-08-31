@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion"
 const svgVariants = {
   initial: {
     rotate: -90,
-    opacity: 0,
+    opacity: 0.5,
   },
   animate: {
     rotate: 0,
@@ -28,7 +28,7 @@ const svgVariants = {
 }
 const pathVariants = {
   initial: {
-    opacity: 0,
+    opacity: 0.5,
     pathLength: 0,
   },
   animate: {
@@ -41,7 +41,6 @@ const pathVariants = {
   },
   exit: {
     opacity: 0,
-    pathLength: 0,
     transition:{
       duration: 1,
       ease:"easeInOut"
