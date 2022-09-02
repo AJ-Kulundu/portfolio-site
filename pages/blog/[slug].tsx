@@ -4,7 +4,7 @@ import { useMDXComponent } from "next-contentlayer/hooks"
 import Container from "@components/Container"
 import PostMetrics from "@components/PostMetrics"
 import LikeButton from "@components/LikeButton"
-import { motion, useScroll } from 'framer-motion';
+import { motion, useScroll } from "framer-motion"
 
 export const getStaticPaths = async () => {
   const paths: string[] = allBlogs.map((blog) => blog.url)
@@ -36,7 +36,7 @@ function BlogLayout({ blog }: { blog: Blog }) {
           </div>
           <PostMetrics slug={blog.slug} />
         </div>
-        <article className="prose marker:text-black prose-h2:text-4xl prose-h3:text-2xl hover:prose-a:text-teal-500 dark:hover:prose-a:text-teal-600 prose-h3:tracking-wide prose-h2:tracking-wide prose-p:text-lg prose-p:font-medium prose-p:text-black prose-a:no-underline prose-li:font-medium prose-li:text-black prose-hr:border-2 prose-hr:opacity-60 dark:prose-invert dark:marker:text-white dark:prose-p:text-white dark:prose-li:text-white">
+        <article className="prose mx-auto max-w-2xl marker:text-black prose-h2:text-4xl prose-h2:tracking-wide prose-h3:text-2xl prose-h3:tracking-wide prose-p:text-lg prose-p:font-medium prose-p:text-black prose-a:no-underline hover:prose-a:text-teal-500 prose-li:font-medium prose-li:text-black prose-hr:border-2 prose-hr:opacity-60 dark:prose-invert dark:marker:text-white dark:prose-p:text-white dark:hover:prose-a:text-teal-600 dark:prose-li:text-white">
           {blog && MDXContent ? <MDXContent /> : <h1>No blog posts</h1>}
         </article>
         <div className="flex items-center justify-center p-4">

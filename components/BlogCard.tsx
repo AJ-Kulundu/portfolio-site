@@ -23,7 +23,7 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
       <motion.a
         className="mx-auto flex w-full flex-col items-start space-y-2 rounded-2xl bg-neutral-900/5 p-6 shadow-sm  dark:bg-neutral-100/5"
         whileHover={{ scale: 1.1 }}
-        whileTap={{scale:0.9}}
+        whileTap={{ scale: 0.9 }}
       >
         <h1 className="text-xl font-semibold tracking-wide">{blog.title}</h1>
         <div className="flex flex-row items-center space-x-4">

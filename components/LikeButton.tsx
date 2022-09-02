@@ -19,17 +19,21 @@ const LikeButton = ({ slug }: { slug: string }) => {
         className="tansition-all relative transform overflow-hidden rounded-lg duration-500"
         onClick={() => likesIncrement()}
       >
-        <div className="relative">
+        <div className="relative overflow-hidden rounded-lg">
           <div
             className={cx(
-              "absolute inset-0 h-6 w-6 bg-gradient-to-r from-red-500 to-red-700 transition-transform dark:from-red-700 dark:to-red-900",
+              "absolute inset-0 h-6 w-6 bg-gradient-to-r from-red-500 to-red-700 p-2 transition-transform dark:from-red-700 dark:to-red-900",
               {
-                "translate-y-6": userLikes === 0,
+                "translate-y-6": !userLikes || userLikes === 0,
                 "translate-y-3": userLikes === 1,
               },
             )}
           />
-          <HeartIcon className={`relative h-6 w-6 text-neutral-900/50 dark:text-neutral-100/50 ${likesLoading?`animate-pulse`:null}`} />
+          <HeartIcon
+            className={`relative h-6 w-6 text-neutral-900/50 dark:text-neutral-100/50 ${
+              likesLoading ? `animate-pulse` : null
+            }`}
+          />
         </div>
       </button>
       <span className="flex flex-row text-neutral-900/70 dark:text-neutral-100/70">

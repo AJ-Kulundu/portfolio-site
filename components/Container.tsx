@@ -20,10 +20,10 @@ const svgVariants = {
   exit: {
     rotate: 90,
     opacity: 0,
-    transition:{
+    transition: {
       duration: 1,
-      ease:"easeOut"
-    }
+      ease: "easeOut",
+    },
   },
 }
 const pathVariants = {
@@ -41,10 +41,10 @@ const pathVariants = {
   },
   exit: {
     opacity: 0,
-    transition:{
+    transition: {
       duration: 1,
-      ease:"easeInOut"
-    }
+      ease: "easeInOut",
+    },
   },
 }
 
@@ -157,7 +157,9 @@ const Container: FC = (props) => {
             <NavItem href="/blog">Blog</NavItem>
             <NavItem href="/tweets">Tweets</NavItem>
           </div>
-          <AnimatePresence initial={false} mode="wait">{renderTheme()}</AnimatePresence>
+          <AnimatePresence initial={false} mode="wait">
+            {renderTheme()}
+          </AnimatePresence>
         </nav>
         <main className="flex flex-col justify-center bg-neutral-100 dark:bg-neutral-900">
           {children}
