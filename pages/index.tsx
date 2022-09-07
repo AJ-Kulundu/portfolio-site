@@ -1,11 +1,31 @@
 import type { NextPage } from "next"
 import Container from "@components/Container"
+import Typical from "react-typical"
 
 const Home: NextPage = () => {
   return (
     <Container>
-      <div className="mx-auto flex w-full justify-center">
-        <h1 className="text-xl font-semibold">Hello world!</h1>
+      <div className="mx-auto flex w-full max-w-2xl flex-col justify-start space-y-6 py-10">
+        <span className="flex justify-start text-xl">Hello, my name is</span>
+        <span className="flex justify-start text-4xl font-bold tracking-wide">
+          AJ Kulundu
+        </span>
+        <span className="flex justify-start text-2xl ">
+          I&apos;m a&nbsp;
+          <Typical
+            className="bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text font-bold text-transparent"
+            steps={[
+              "Software Developer",
+              3000,
+              "Cloud Practitioner",
+              2000,
+              "Technical Writer",
+              2500,
+            ]}
+            loop={Infinity}
+            wrapper="span"
+          />
+        </span>
       </div>
     </Container>
   )

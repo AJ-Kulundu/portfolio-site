@@ -14,8 +14,8 @@ export const getStaticProps = async () => {
 
 const Blogs = ({ blogs }: { blogs: Blog[] }) => {
   return (
-    <Container>
-      <div className="mx-auto max-w-2xl space-y-5 py-6">
+    <Container title="Blog - AJ Kulundu">
+      <div className="mx-auto max-w-2xl space-y-5 py-10">
         <h1 className="text-3xl font-semibold tracking-wide">Blogs Page</h1>
         {blogs.map((blog: Blog) => (
           <BlogCard key={blog._id} blog={blog} />

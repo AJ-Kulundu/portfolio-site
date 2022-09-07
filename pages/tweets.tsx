@@ -25,7 +25,7 @@ const Tweets: NextPage = ({
   tweets,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <Container>
+    <Container title="Tweets - AJ Kulundu">
       <div className="mx-auto max-w-2xl space-y-5 py-6">
         <h1 className="text-3xl font-semibold tracking-wide">Tweets</h1>
         <p className="font-medium">
