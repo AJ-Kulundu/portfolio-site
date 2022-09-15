@@ -59,7 +59,7 @@ const NavItem = ({ href, children }: { href: string; children: string }) => {
 const Container: FC = (props) => {
   const { children, ...customMeta } = props
   const meta = {
-    title: "AJ Kulundu - Developer, writer",
+    title: "AJ Kulundu - Developer & Writer",
     description: "Softare Engineer and Technical writer",
     type: "website",
     ...customMeta,
@@ -151,17 +151,19 @@ const Container: FC = (props) => {
         <meta name="robots" content="follow, index" />
       </Head>
       <div className="flex w-full flex-col justify-center px-8">
-        <nav className="relative mx-auto flex w-full max-w-2xl flex-row items-center justify-between bg-neutral-100 py-6  dark:bg-neutral-900">
-          <div className="flex flex-row items-center gap-x-4">
-            <NavItem href="/">Home</NavItem>
-            <NavItem href="/blog">Blog</NavItem>
-            <NavItem href="/tweets">Tweets</NavItem>
-          </div>
-          <AnimatePresence initial={false} mode="wait">
-            {renderTheme()}
-          </AnimatePresence>
-        </nav>
-        <main className="flex flex-col justify-center bg-neutral-100 dark:bg-neutral-900">
+        <div className="sticky top-0 z-10 w-full  bg-neutral-100 py-6  dark:bg-neutral-900 ">
+          <nav className=" mx-auto flex w-full max-w-2xl flex-row items-center justify-between">
+            <div className="flex flex-row items-center gap-x-4">
+              <NavItem href="/">Home</NavItem>
+              <NavItem href="/blog">Blog</NavItem>
+              <NavItem href="/tweets">Tweets</NavItem>
+            </div>
+            <AnimatePresence initial={false} mode="wait">
+              {renderTheme()}
+            </AnimatePresence>
+          </nav>
+        </div>
+        <main className="flex flex-col bg-neutral-100 dark:bg-neutral-900">
           {children}
         </main>
         <Footer />
