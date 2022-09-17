@@ -151,7 +151,7 @@ const Container: FC = (props) => {
         <meta name="robots" content="follow, index" />
       </Head>
       <div className="flex w-full flex-col justify-center px-8">
-        <div className="sticky top-0 z-10 w-full  bg-neutral-100 py-6  dark:bg-neutral-900 ">
+        <div className="sticky top-0 z-20 w-full  bg-neutral-100 py-6  dark:bg-neutral-900 ">
           <nav className=" mx-auto flex w-full max-w-2xl flex-row items-center justify-between">
             <div className="flex flex-row items-center gap-x-4">
               <NavItem href="/">Home</NavItem>

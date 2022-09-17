@@ -11,6 +11,7 @@ export const getStaticProps: GetStaticProps = async () => {
     "1471558914579722245",
     "1002109380706250752",
     "1346476915838709763",
+    "1297189305023107072"
   ]
 
   const tweets = await queryTweets(tweetIds)
@@ -29,7 +30,7 @@ const Tweets: NextPage = ({
       <div className="mx-auto max-w-2xl space-y-5 py-6">
         <h1 className="text-3xl font-semibold tracking-wide">Tweets</h1>
         <p className="font-medium">
-          I use twitter sometimes and find tweets that make you think, give you
+          I use twitter sometimes and find tweets that make me think, give me
           inspiration or explain my ideas better. I created this page to share
           some of my favourite tweets.
         </p>
