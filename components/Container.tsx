@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react"
+import React, {  useState, useEffect } from "react"
 import Head from "next/head"
 import Link from "next/link"
 import { useTheme } from "next-themes"
@@ -56,10 +56,10 @@ const NavItem = ({ href, children }: { href: string; children: string }) => {
   )
 }
 
-const Container = (props) => {
+const Container = (props: { [x: string]: any; children: any }) => {
   const { children, ...customMeta } = props
   const meta = {
-    pageTitle: "AJ Kulundu - Developer & Writer",
+    title: "AJ Kulundu - Developer & Writer",
     description: "Softare Engineer and Technical writer",
     type: "website",
     ...customMeta,
@@ -143,7 +143,7 @@ const Container = (props) => {
   return (
     <div className="bg-neutral-100 dark:bg-neutral-900">
       <Head>
-        <title>{meta.pageTitle}</title>
+        <title>{meta.title}</title>
         <meta name="description" content={meta.description} />
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content="AJ Kulundu" />
