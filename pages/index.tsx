@@ -12,8 +12,9 @@ const Home: NextPage = () => {
         </span>
         <span className="flex justify-start text-2xl ">
           I&apos;m a&nbsp;
+          <span className="bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text font-bold text-transparent">
           <Typical
-            className="bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text font-bold text-transparent"
+            
             steps={[
               "Software Developer",
               3000,
@@ -25,6 +26,7 @@ const Home: NextPage = () => {
             loop={Infinity}
             wrapper="span"
           />
+          </span>
         </span>
       </div>
     </Container>
