@@ -1,93 +1,36 @@
-import type {NextPage, GetStaticProps} from 'next';
-import Landing from "@components/landing/Home";
-import Contact from "@components/Contact";
-import Skills from "@components/Skills";
-import Project from "@components/Project";
+import type { NextPage } from "next"
+import Container from "@components/Container"
+import Typical from "react-typical"
 
-type Project = {
-  image:string,
-  caption:string,
-  description:string,
-  categories:string[],
-  link:string
-}
-
-type Home  = {
-  user_id: string,
-  service: string,
-  template_id: string,
-  user_email: string,
-  projects: Project[]
-}
-
-
-const Home:NextPage<Home> = ({
-  user_id,
-  service,
-  template_id,
-  user_email,
-  projects,
-}) => {
+const Home: NextPage = () => {
   return (
-    <div>
-      <Landing />
-      <Project projects={projects} />
-      <Skills />
-      <Contact
-        userID={user_id}
-        serviceID={service}
-        templateID={template_id}
-        userEmail={user_email}
-      />
-    </div>
-  );
+    <Container>
+      <div className="mx-auto mb-20 flex w-full max-w-2xl flex-col justify-start space-y-6 py-20 md:mb-8">
+        <span className="flex justify-start text-xl">Hello, my name is</span>
+        <span className="flex justify-start text-4xl font-bold tracking-wide">
+          AJ Kulundu
+        </span>
+        <span className="flex justify-start text-2xl ">
+          I&apos;m a&nbsp;
+          <span className="bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text font-bold text-transparent">
+          <Typical
+            
+            steps={[
+              "Software Developer",
+              3000,
+              "Cloud Practitioner",
+              2000,
+              "Technical Writer",
+              2500,
+            ]}
+            loop={Infinity}
+            wrapper="span"
+          />
+          </span>
+        </span>
+      </div>
+    </Container>
+  )
 }
 
-export const getStaticProps:GetStaticProps = async () => {
-  const projects = [
-    {
-      image: "/Capture.PNG",
-      caption: " Crypto Info",
-      description:
-        "This website leverages the coinRanking API to display different cryptocurrencies. It uses redux-toolkit to manage state and query data.",
-      categories: ["React", "Redux-Toolkit", "Chakra-UI"],
-      link: "https://cryptoinfo-app1.netlify.app",
-    },
-    {
-      image: "/Capture2.PNG",
-      caption: " Avatar LAB",
-      description:
-        "This is a simple site that leverages the avatar-LAB(Last Air-Bender API) to display the avatar universe characters and their traits. The site uses NextJs for sever-side rendering and the next-Image component for lazy loading Images to better optimize the site.",
-      categories: ["React", "TS", "NextJS", "TailwindCSS"],
-      link: "https://avatar-lab.netlify.app",
-    },
-    {
-      image: "/Capture3.PNG",
-      caption: " Blog site",
-      description:
-        "This is a simple blog site that leverages contentlayer. Contentlayer is a content SDK that validates and transforms content into type-safe JSON, which makes it easier for devleopers to work with content.",
-      categories: ["React", "TS", "NextJS", "TailwindCSS", "ContentLayer"],
-      link: "https://aj-blog-example.netlify.app",
-    },
-    {
-      image: "/Capture4.PNG",
-      caption: " Cocktail directory",
-      description:
-        "This is a site that leveraged thecocktaildb.com API. It uses the API to search and display different cocktail on the website. The website also has a details page to show details of each cocktail on the site, including the ingridients and instructions on how to make the cocktails.",
-      categories: ["React", "NextJS", "TailwindCSS", "React-Query"],
-      link: "https://cocktails-ditcionary.netlify.app",
-    },
-  ];
-  return {
-    props: {
-      user_id: process.env.EMAILJS_USERID,
-      template_id: process.env.EMAILJS_TEMPLATEID,
-      service: process.env.EMAILJS_SERVICEID,
-      user_email: process.env.MY_EMAIL,
-      projects,
-    },
-  };
-};
-
-
-export default Home;
+export default Home

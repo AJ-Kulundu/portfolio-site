@@ -1,0 +1,549 @@
+---
+title: Turn MDX content into type-safe data you can import into your blog using contentlayer
+description: Manage content and integrate MDX easily into your developer blog by validating and transforming content into type-safe data which you can easily import into your pages.
+date: 2022-8-13
+---
+
+import { Playground } from "../components/CodePlayground"
+import { Loading } from "../components/Loading"
+
+[**MDX**](https://mdxjs.com/) is an extension of markdown that allows you to integrate React components (JSX) into your markdown. This enables you as a developer to have an interactive blog,
+which improves the overall experience of your readers. You can add components such as the animation below to your blogs using MDX.
+
+<Playground description="This loading animation is used to display a task is being done in the background.">
+  <Loading />
+</Playground>
+
+---
+
+## Problem
+
+While mdx gives us the ability to customize our blog to our liking, it comes with an additional level of complexity. The drawbacks that come with adding mdx to your blog are:
+
+- The nature of markdown and mdx make it difficult to maintain the structure of content and manage relationships between content as number of blog posts grow.
+- mdx solutions leave content processing and integration into page templates to the developer. This requires the use of third-party APIs such `path`, `glob` and `gray matter` which creates a repetitive boilerplate and increases the complexity.
+- No live-reloading to update the UI when content changes during dvelopment.
+- You have to create your own mechanism for caching content and Incrementally regenerating content for better builds.
+
+This problems leave the experience of working with mdx with a lot to be desired. This is where contentlayer comes in.
+
+---
+
+## [**Contentlayer**](https://www.contentlayer.dev/)
+
+[Contentlayer](https://www.contentlayer.dev/) makes working with mdx content or markdown content easy for developers. Contentlayer follows the pattern of content-as-data which was brought about by the Gatsby framework. This means you create content on a markdown or mdx file and then contentlayer validates and transforms the content into data you can import to your pages. It is easy to set up and maintain as the project scales enabling you to focus more on the content.
+Contentlayer is to content what [prisma](https://prisma.io) is to databases, thats why people are calling it the "_Prisma for content_ ". Contentlayer aims to provide a great developer experience with the following features:
+
+- Live-reloading of content that has changed for frameworks that support live-reloading.
+- Automatically generating type definitions.(Mostly beneficial for people who use TypeScript)
+- Built-in content validation.
+- Caching builds and incremental regeneration.
+- Providing a schema to build content structure and create complex content relationships between related content.
+
+Contentlayer is joy to work with, it simplifies the process of working with markdown and mdx as you'll see as we go along.
+
+---
+
+## Code WalkThrough
+
+You can follow along the step-by-step process on how to set up contentlayer with NextJS.
+
+### Installing modules
+
+First you start by creating a NextJS appliction using create-next-app.
+
+```bash
+npx create-next-app simple-blog
+```
+
+Navigate to the foler called simple-blog that was created by `create-next-app`.
+
+```bash
+cd simple-blog
+```
+
+After navigating to the simple-blog folder you install contentlayer with the command below.
+
+```bash
+npm install contentlayer next-contentlayer
+```
+
+Finally you install tailwindcss, autoprefixer and postcss as developer dependencies.
+
+```bash
+npm install -D tailwindcss autoprefixer postcss
+```
+
+### Configuring tailwind
+
+After installing tailwindcss, run the command below to generate the `tailwind.config.js` file and the `postcss.config.js` file.
+
+```bash
+npx tailwindcss init -p
+```
+
+In the `tailwindcss.config.js` file add the paths to all the files that require tailwindcss for styling.
+
+```js:tailwind.config.js {3-6} showLineNumbers
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+Lastly add the directives below to enable tailwind's layers.
+
+```css:global.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+### Configuring Contentlayer to work with NextJS
+
+In the `next.config.js` file you import the `withContentlayer`
+function to wrap the nextConfig. This hooks contentlayer to the
+`next build` and `next dev` processes, enabling you to use contentlayer
+at build time and during development.
+
+```js:next.config.js {2,7} showLineNumbers
+/** @type {import('next').NextConfig} */
+const {withContentlayer} = require('next-contentlayer')
+const nextConfig = {
+   reactStrictMode: true,
+}
+
+module.exports = withContentlayer(nextConfig);
+```
+
+Then add the highlighted lines below to your tsconfig.json if you are using
+TypeScript or if your are using javascript, create a jsconfig.json and add the code below.
+
+```json:jsconfig.json {3,5,8}
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "contentlayer/generated": ["./.contentlayer/generated"]
+    }
+  },
+  "include": [".contentlayer/generated"],
+  "exclude": ["node_modules"]
+}
+```
+
+### The schema
+
+Contentlayer uses a schema to define the structure of your content.
+The schema is defined in the `contentlayer.config.js` file. This file determines what is transformed into type-safe data you can use in your components.
+The schema requires two functions `defineDocumentType` and `makeSource`.
+The `defineDocumentType` function defines the schema for all the documents type.
+The `makeSource` function provides the schema and configuration from the `defineDocumentType` function to your application.
+
+```js:contentlayer.config.js
+import { defineDocumentType, makeSource } from "contentlayer/source-files"
+
+const Blog = defineDocumentType(() => ({}))
+export default makeSource({})
+
+```
+
+The `definedocumentType` function has 5 fields which it uses to define the schema.
+
+1. `name` : Defines the types and functions generated for the mdx files.
+2. `filePathPattern` : Specifies the directory with the mdx files contentlayer process.
+3. `contentType` (optional) : It is set to markdown by default. In order for you to use mdx you have to set this field to "mdx".
+   It can also be set to JSON which makes contentlayer get only the frontmatter.
+4. `fields`: These are used to determine the structure of the mdx file
+5. `computedFields` : These are fields that are made calculated instead of being read from the mdx files.
+
+```js:contentlayer.config.js
+...
+const Blog = defineDocumentType(() => ({
+  name: "Blog",
+  filePathPattern: `**/*.mdx`,
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+      description: "The title of the blog post",
+    },
+    description: {
+      type: "string",
+      required: true,
+      description: "The desription of the blog post",
+    },
+    date: {
+      type: "string",
+      required: true,
+      description: "The date of the blog post",
+    },
+  },
+  computedFields: {
+    url: {
+      type: "string",
+      resolve: (blog) => `/blog/${blog._raw.flattenedPath}`,
+    },
+    slug: {
+      type: "string",
+      resolve: (blog) => blog._raw.flattenedPath,
+    },
+  },
+}))
+...
+```
+
+The `makeSource` function has two required fields.
+
+1. `contentDirPath`: The name of the the folder from which the mdx files will be processed.
+2. `documentTypes` : This contains the schema defintions and it should be the name you used to declare the `defineDocumentType` function.
+
+```js:contentlayer.config.js
+...
+export default makeSource({
+  contentDirPath: "blog",// The folder to contentlayer gets the source files from
+  documentTypes: [Blog], // The name of the type generated by contentlayer
+})
+```
+
+Since we are using mdx we have to declare the contentType as mdx for contentlayer to use the [`mdx-bundler`](https://github.com/kentcdodds/mdx-bundler). If you do not explicitly declare the contentType as mdx it will automatically process the files as markdown and it won't leverage the full capabilities of mdx.
+
+```js:contentlayer.config.js {5} showLineNumbers
+import { defineDocumentType, makeSource } from "contentlayer/source-files"
+const Blog = defineDocumentType(() => ({
+  name: "Blog",
+  filePathPattern: `**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+      description: "The title of the blog post",
+    },
+    description: {
+      type: "string",
+      required: true,
+      description: "The desription of the blog post",
+    },
+    date: {
+      type: "string",
+      required: true,
+      description: "The date of the blog post",
+    },
+  },
+  computedFields: {
+    url: {
+      type: "string",
+      resolve: (blog) => `/blog/${blog._raw.flattenedPath}`,
+    },
+    slug: {
+      type: "string",
+      resolve: (blog) => blog._raw.flattenedPath,
+    },
+  },
+}))
+
+export default makeSource({
+  contentDirPath: "blog",
+  documentTypes: [Blog],
+})
+```
+
+### Create your blog content
+
+Create a folder at the root of your project called Blog. Then create files in the folder as they are named below..
+
+```
+ 📁blog/
+  └──first-blog.mdx
+  └──second-blog.mdx
+  └──third-blog.mdx
+```
+
+Then add the code below to the `first-blog.mdx` file.
+
+```md:first-blog.mdx
+---
+title: My first blog post
+description: First Blog
+date: 2022-9-2
+---
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+```
+
+Copy and paste the code above to `second-blog.mdx` and `third-blog.mdx`.
+Replace the word 'first' in the title and description with 'second' and 'third' in their respective mdx files.
+
+### Connect the blog content to your pages
+
+We will first install the date-fns package to help with formatting the dates.
+
+```bash
+npm install date-fns
+```
+
+We will then change the code in the home page (`pages/index.js`) to show a list of all the individual blog posts.
+
+```jsx:pages/index.js {3} showLineNumbers
+import Link from 'next/link'
+import { format, isThisYear,compareDesc,parseISO } from "date-fns"
+import { allBlogs } from "contentlayer/generated"
+
+export async function getStaticProps () {
+  const blogs = allBlogs.sort((a,b)=> {
+    return compareDesc(new Date(a.date), new Date(b.date))
+  })
+
+  return{ props: {blogs}}
+}
+
+const BlogCard = ({blog}) = > {
+  return(
+    <Link href={blog.url} passHref>
+    <a className="mx-auto flex w-full flex-col items-start space-y-2 rounded-2xl bg-neutral-900/5 p-6 shadow-sm  dark:bg-neutral-100/5">
+    <h1 className="text-xl font-semibold tracking-wide">{blog.title}</h1>
+        <div className="flex flex-row items-center space-x-4">
+          <span className="text-neutral-900/50 dark:text-neutral-100/50 ">
+            {isThisYear(parseISO(blog.date))? format(parseISO(blog.date)) : format(parseISO(blog.date))}
+          </span>
+        </div>
+        <span className="whitespace-pre-wrap text-lg font-medium">
+          {blog.description}
+        </span>
+    </a>
+    </Link>
+  )
+}
+
+const Home = ({blogs})=> {
+  return(
+    <div className="flex flex-col justify-center bg-neutral-100 dark:bg-neutral-900">
+        <div className="mx-auto max-w-2xl space-y-5 py-6">
+          <h1 className="text-3xl font-semibold tracking-wide">Blogs Page</h1>
+          {blogs.map((blog: Blog) => (
+            <BlogCard key={blog._id} blog={blog} />
+          ))}
+      </div>
+    </div>
+  )
+}
+
+export default Home
+```
+
+This should show a list of the three blogs that were created in the blog folder.
+
+### Single Blog Page
+
+This page requires us to import the tailwindcss typography plugin to enable us to style the typography of the blog.
+You can import the typography plugin with the command below
+
+```bash
+npm install @tailwindcss/typography
+```
+
+Add `require('@tailwindcss/typography')` in the plugins section of the `tailwind.config.js` file as highlighted below.
+
+```js:tailwind.config.js {10} showLineNumbers
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [require('@tailwindcss/typography'),]
+}
+```
+
+In the single blog post page we will use `getStaticPaths` and `getStaticProps` function.
+
+- `getStaticPaths` will be used to statically generate dynamic routes that use the `getStaticProps` function. The function returns `paths` which determines which url
+  paths will be pre-rendered and `fallback` which is set to flase sothat it returns a **404 page** when the url path is not returned by `getStaticPaths`.
+- `getStaticProps` pre-renders the page paths at build time. This statically generates pages for the slugs generated by contentlayer for each blog post. The statically generated pages can be cached at a CDN(Content Delivery Network) for faster load times.
+
+```jsx:pages/[slug].tsx
+import { allBlogs } from "contentlayer/generated"
+
+export const getStaticPaths = async () => {
+  const paths = allBlogs.map((blog) => blog.url)
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export const getStaticProps = async ({ params }) => {
+  const blog = await allBlogs.find((blog) => blog.slug === params.slug)
+  return {
+    props: { blog },
+  }
+}
+...
+```
+
+Since we are using mdx we will need to use the `useMDXComponent()` hook which is provoded by the next-contentlayer package. The `useMDXComponent()` hook leverages mdx-bundler to process **mdx enriched** markdown and render it to the single blog post page.
+The mdx processed content is the wrapped in an article HTML element and given the prose classname to enable the tailwind typography plugin to style the blog's typography and allow us to style typographical elements(e.g h1,h2,span,a,p).
+
+```jsx:pages/[slug].tsx {2,20,30-32} showLineNumbers
+import { allBlogs } from "contentlayer/generated"
+import { useMDXComponent } from "next-contentlayer/hooks"
+
+export const getStaticPaths = async () => {
+  const paths = allBlogs.map((blog) => blog.url)
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export const getStaticProps = async ({ params }) => {
+  const blog = await allBlogs.find((blog) => blog.slug === params.slug)
+  return {
+    props: { blog },
+  }
+}
+
+const BlogLayout = ({blog}) => {
+  const MDXContent = useMDXComponent(blog.body.code)
+  return(
+    <div className="flex flex-col justify-center bg-neutral-100 dark:bg-neutral-900">
+      <div className="mx-auto max-w-2xl space-y-4 py-10 ">
+        <h1 className="text-6xl font-bold">{blog.title}</h1>
+        <div className="mb-4 flex flex-row space-x-4">
+          <span className="text-neutral-900/50 dark:text-neutral-100/50">
+            {formattedDate(blog.date)}
+          </span>
+        </div>
+        <article className="prose mx-auto max-w-2xl marker:text-black prose-h2:text-4xl prose-h2:tracking-wide prose-h3:text-2xl prose-h3:tracking-wide prose-p:text-lg prose-p:font-medium prose-p:text-black prose-a:no-underline hover:prose-a:text-teal-500 prose-li:font-medium prose-li:text-black prose-hr:border-2 prose-hr:opacity-60 dark:prose-invert dark:marker:text-white dark:prose-p:text-white dark:hover:prose-a:text-teal-600 dark:prose-li:text-white">
+          {blog && MDXContent ? <MDXContent /> : <h1>No blog posts</h1>}
+        </article>
+      </div>
+    </div>
+  )
+}
+
+export default BlogLayout
+```
+
+### Errors that may occur
+
+Since contentlayer has content validation, it aims to make sure the frontmatter of your mdx files are consistent with the schema in the `contentlayer.config.js`.
+For context the frontmatter of your mdx file is the part shown below.
+
+```md
+---
+title: My first blog post
+description: First Blog
+date: 2022-9-2
+---
+```
+
+How we define the fields option(inside the `defineDocumentType` function) in the `contentlayer.config.js` file determines the way we structure our frontmatter. If you set the required definition of a field to true, as we did for all our fields, you have to include it in the frontmatter of every mdx file.
+For example if we do not put the date field in the frontmatter, which is a required field,we will get an error in the console as shown below.
+
+```bash
+Warning: Found 1 problems in 1 documents.
+
+ └── Missing required fields for 1 documents. (Skipping documents)
+
+     • "first-blog.mdx" is missing the following required fields:
+       • date: string
+
+```
+
+### Adding reading time
+
+We can add the total time it takes to read a blog post using the `reading-time` npm package. It works with markdown so it is suitable for this blog.
+First install the package with the command below.
+
+```bash
+npm install reading-time
+```
+
+The `reading-time` package provides a function that estimates how long it would take a person
+to read an article or blog post. The function returns a json object with 4 values; time in milliseconds, minutes, text and number of words.
+
+```json
+// example of reading-time output
+{
+  "text": "1 min read",
+  "minutes": 1,
+  "time": 6000, // This is in milliseconds
+  "words": 200
+}
+```
+
+In order for us to use the `reading-time` function we import it into the `contentlayer.config.js` file.
+Then add it as a computed field as seen below. This is because it is a calculated and not gotten from the mdx file.
+The readingTime field has a json type because it returns a json object.
+
+```js:Contentlayer.config.js {1,5-8}
+import readingTime from "reading-time"
+ ...
+ computedFields: {
+  ...
+  readingTime: {
+    type: "json",
+    resolve: (blog) => readingTime(blog.body.raw),
+  },
+ }
+ ...
+```
+
+After adding readingTime as a computed field it should be automatically generated by contentlayer for every mdx file.
+This makes it easy to add the reading time to each BlogCard component. Add to the BlogCard component `{blog.readingTime.text}` as highlighted below to show the reading time of each blog post.
+
+```jsx:pages/index.js {14-16}
+...
+const BlogCard = ({blog}) = > {
+  return(
+    <Link href={blog.url} passHref>
+    <a className="mx-auto flex w-full flex-col items-start space-y-2 rounded-2xl bg-neutral-900/5 p-6 shadow-sm  dark:bg-neutral-100/5">
+    <h1 className="text-xl font-semibold tracking-wide">{blog.title}</h1>
+        <div className="flex flex-row items-center space-x-4">
+          <span className="text-neutral-900/50 dark:text-neutral-100/50 ">
+            {isThisYear(parseISO(blog.date))? format(parseISO(blog.date)) : format(parseISO(blog.date))}
+          </span>
+        </div>
+        <span className="whitespace-pre-wrap text-lg font-medium">
+          {blog.description}
+        </span>
+        <span className="text-neutral-900/50 dark:text-neutral-100/50">
+          {blog.readingTime.text}
+        </span>
+    </a>
+    </Link>
+  )
+}
+...
+```
+
+## Conclusion
+
+This covers almost everything you require to configure and set up a mdx blog with contentlayer. You have seen how the process of integrating mdx has been simplified by contentlayer. We dont even need to import mdxjs package to work with mdx or third party APIs such as `glob` and `gray-matter`.
+
+In addition, contentlayer provides type-safety, the ability to create custom functions for your content and a single file to define and customze the structure of your mdx content for scalability.
+
+You can add extra features to your blog to make it stand out. Some ideas to add to your blog are:
+
+1. Add blog views using a database. You can use the prisma tool to connect and query the database.
+2. Add mdx extensions such remark plugins and rehype plugins. These are added in the `contentlayer.config.js` file.
+3. Add a light and dark theme to the blog.
+4. Creating Open Graph Images to share links to your blog on your favourite social media platforms.
+
+The sky is the limit, now that contenlayer handles all the processing you can focus on what creative new ideas you want to write about.

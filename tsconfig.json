@@ -5,7 +5,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -18,10 +18,12 @@
       "@components/*":["components/*"],
       "@libs/*":["libs/*"],
       "@styles/*":["styles/*"],
-      "@public/*":["public/*"]
+      "@public/*":["public/*"],
+      "@models/*":["models/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx",".contentlayer/generated"],
   "exclude": ["node_modules"]
 }

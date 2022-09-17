@@ -1,23 +1,13 @@
-import "../src/theme/styles.css";
-import Layout from "@components/Layout";
-import Navbar from "@components/Navbar";
-import Header from '@components/Header';
-import Footer from '@components/Footer';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import type {AppProps} from 'next/app';
+import "../styles/globals.css"
+import type { AppProps } from "next/app"
+import { ThemeProvider } from "next-themes"
 
-
-function MyApp({ Component, pageProps }:AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Header />
-      <Navbar />
+    <ThemeProvider enableSystem={true} attribute={"class"}>
       <Component {...pageProps} />
-      <Footer />
-    </Layout>
-  );
+    </ThemeProvider>
+  )
 }
 
-export default MyApp;
+export default MyApp
