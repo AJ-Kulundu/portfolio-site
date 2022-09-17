@@ -56,10 +56,10 @@ const NavItem = ({ href, children }: { href: string; children: string }) => {
   )
 }
 
-const Container: FC = (props) => {
+const Container = (props) => {
   const { children, ...customMeta } = props
   const meta = {
-    title: "AJ Kulundu - Developer & Writer",
+    pageTitle: "AJ Kulundu - Developer & Writer",
     description: "Softare Engineer and Technical writer",
     type: "website",
     ...customMeta,
@@ -143,7 +143,7 @@ const Container: FC = (props) => {
   return (
     <div className="bg-neutral-100 dark:bg-neutral-900">
       <Head>
-        <title>{meta.title}</title>
+        <title>{meta.pageTitle}</title>
         <meta name="description" content={meta.description} />
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content="AJ Kulundu" />
