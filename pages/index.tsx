@@ -5,7 +5,7 @@ import Typical from "react-typical"
 const Home: NextPage = () => {
   return (
     <Container>
-      <div className="mx-auto flex w-full max-w-2xl flex-col justify-start space-y-6 py-20 mb-20 md:mb-8">
+      <div className="mx-auto mb-20 flex w-full max-w-2xl flex-col justify-start space-y-6 py-20 md:mb-8">
         <span className="flex justify-start text-xl">Hello, my name is</span>
         <span className="flex justify-start text-4xl font-bold tracking-wide">
           AJ Kulundu

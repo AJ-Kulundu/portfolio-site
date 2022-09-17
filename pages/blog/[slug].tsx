@@ -23,12 +23,15 @@ export const getStaticProps = async ({ params }: any) => {
 function BlogLayout({ blog }: { blog: Blog }) {
   const MDXContent = useMDXComponent(blog.body.code)
   return (
-    <Container title={`AJ Kulundu - ${blog.title}`} description={blog.description}>
+    <Container
+      title={`AJ Kulundu - ${blog.title}`}
+      description={blog.description}
+    >
       <div className="flex flex-col justify-center space-y-4 py-10">
-        <div className="flex flex-row max-w-2xl mx-auto">
+        <div className="mx-auto flex max-w-2xl flex-row">
           <h1 className="text-4xl font-bold md:text-6xl">{blog.title}</h1>
         </div>
-        <div className="mx-auto mb-4 flex max-w-2xl w-full flex-row justify-start space-x-4">
+        <div className="mx-auto mb-4 flex w-full max-w-2xl flex-row justify-start space-x-4">
           <span className="text-neutral-900/50 dark:text-neutral-100/50">
             {formattedDate(blog.date)}
           </span>

@@ -11,7 +11,7 @@ export const getStaticProps: GetStaticProps = async () => {
     "1471558914579722245",
     "1002109380706250752",
     "1346476915838709763",
-    "1297189305023107072"
+    "1297189305023107072",
   ]
 
   const tweets = await queryTweets(tweetIds)
