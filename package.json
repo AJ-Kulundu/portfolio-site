@@ -20,6 +20,7 @@
     "@emotion/styled": "^11.8.1",
     "@heroicons/react": "^1.0.6",
     "@prisma/client": "^4.2.1",
+    "@vercel/og": "^0.0.19",
     "clsx": "^1.2.1",
     "contentlayer": "^0.2.7",
     "date-fns": "^2.29.1",
