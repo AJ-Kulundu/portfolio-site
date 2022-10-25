@@ -17,7 +17,8 @@ export default  async function handler(req: NextRequest) {
       : "Developer & Writer"
     return new ImageResponse(
       (
-        <div style={{ fontSize:100, fontFamily:'"Work Sans"'}} tw=" flex flex-col items-center justify-center w-full h-full py-40 px-10 rounded-lg bg-white">
+        <div style={{ fontSize:100, fontFamily:'"Work Sans"',backgroundImage: 'radial-gradient(circle at 25px 25px, lightgray 2%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 2%, transparent 0%)',
+        backgroundSize: '100px 100px',}} tw=" flex flex-col items-center justify-center w-full h-full py-40 px-10 rounded-lg bg-white">
           <img
             alt="GitHub Avatar"
             width="200"
