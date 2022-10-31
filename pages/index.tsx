@@ -1,12 +1,21 @@
 import type { NextPage } from "next"
 import Container from "@components/Container"
-import Typical from "react-typical"
+import TextTransition, { presets } from "react-text-transition"
+import React from "react"
 
+const TEXTS = ["Software Developer", "Technical Writer", "Cloud Practitioner"]
 
+const Home = () => {
+  const [index, setIndex] = React.useState(0)
 
-const Home: NextPage = () => {
-   
-   
+  React.useEffect(() => {
+    const intervalId = setInterval(
+      () => setIndex((index) => index + 1),
+      3000, // every 3 seconds
+    )
+    return () => clearTimeout(intervalId)
+  }, [])
+
   return (
     <Container>
       <div className="mx-auto mb-20 flex w-full max-w-2xl flex-col justify-start space-y-6 py-20 md:mb-8">
@@ -14,10 +23,23 @@ const Home: NextPage = () => {
         <span className="flex justify-start text-4xl font-bold tracking-wide">
           AJ Kulundu
         </span>
-        <span className="flex justify-start text-2xl ">
-          I&apos;m a&nbsp;
-          <span className="bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text font-bold text-transparent">
-            <Typical
+        <div className="flex flex-row">
+          <span className="text-2xl ">I&apos;m a&nbsp;</span>
+          <span className="text-2xl font-bold text-black dark:text-white">
+            <TextTransition springConfig={presets.gentle} inline>
+              {TEXTS[index % TEXTS.length]}
+            </TextTransition>
+          </span>
+        </div>
+      </div>
+    </Container>
+  )
+}
+
+export default Home
+
+{
+  /* <Typical
               steps={[
                 "Software Developer",
                 3000,
@@ -28,12 +50,5 @@ const Home: NextPage = () => {
               ]}
               loop={Infinity}
               wrapper="span"
-            />
-          </span>
-        </span>
-      </div>
-    </Container>
-  )
+            /> */
 }
-
-export default Home
