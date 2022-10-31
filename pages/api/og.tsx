@@ -26,24 +26,65 @@ export default async function handler(req: NextRequest) {
             backgroundImage:
               "radial-gradient(circle at 25px 25px, lightgray 2%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 2%, transparent 0%)",
             backgroundSize: "100px 100px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+            padding: "40px 10px 40px 10px",
+            backgroundColor: "white",
           }}
-          tw=" flex flex-col items-center justify-center w-full h-full py-40 px-10 rounded-lg bg-white"
         >
+          <div
+            style={{
+              right: 42,
+              top: 42,
+              position: "absolute",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <span
+              style={{
+                marginLeft: 8,
+                fontSize: 20,
+              }}
+            >
+              ajkulundu.com
+            </span>
+          </div>
           <img
             alt="GitHub Avatar"
-            width="200"
-            height="200"
+            width="150"
+            height="150"
             src={`https://github.com/AJ-Kulundu.png`}
             style={{
               borderRadius: 128,
+              margin: "16px 0px",
             }}
           />
-          <h1 tw="text-5xl capitalize font-bold ml-2 text-center">
-            AJ Kulundu
-          </h1>
-          <h1 tw="text-5xl tracking-wide font-semibold ml-2 text-center">
-            {title}
-          </h1>
+          <div
+            style={{
+              lineHeight: 1,
+              fontSize: 48,
+              display: "flex",
+              margin: "16px 0px",
+            }}
+          >
+            <b>AJ Kulundu</b>
+          </div>
+          <div
+            style={{
+              lineHeight: 1,
+              fontSize: 48,
+              display: "flex",
+              margin: "16px 0px",
+              textAlign: "center",
+            }}
+          >
+            <b>{title}</b>
+          </div>
         </div>
       ),
       {
@@ -64,4 +105,15 @@ export default async function handler(req: NextRequest) {
       status: 500,
     })
   }
+}
+
+{
+  /* <h1 style={{line-height:1,
+          margin-left
+          }} tw="text-5xl capitalize font-bold ml-2 text-center">
+            AJ Kulundu
+          </h1>
+          <h1 style={{}} tw="text-5xl tracking-wide font-semibold ml-2 text-center">
+            {title}
+          </h1> */
 }

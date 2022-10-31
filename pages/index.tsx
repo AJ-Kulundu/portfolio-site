@@ -10,7 +10,7 @@ const Home = () => {
 
   React.useEffect(() => {
     const intervalId = setInterval(
-      () => setIndex((index:number) => index + 1),
+      () => setIndex((index: number) => index + 1),
       3000, // every 3 seconds
     )
     return () => clearTimeout(intervalId)
