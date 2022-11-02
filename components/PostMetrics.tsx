@@ -5,6 +5,12 @@ import { Loading } from "./Loading"
 
 const PostMetrics = ({ slug }: { slug: string }) => {
   const {
+    likes,
+    isError: likesError,
+    isLoading: likesLoading,
+  } = useBlogLikes(slug, { revalidateOnMount: false })
+
+  const {
     views,
     isError: viewsError,
     isLoading: viewsLoading,
@@ -12,11 +18,7 @@ const PostMetrics = ({ slug }: { slug: string }) => {
   } = useBlogViews(slug, {
     revalidateOnMount: false,
   })
-  const {
-    likes,
-    isError: likesError,
-    isLoading: likesLoading,
-  } = useBlogLikes(slug, { revalidateOnMount: false })
+ 
 
   useEffect(() => viewsIncrement(), [])
 
