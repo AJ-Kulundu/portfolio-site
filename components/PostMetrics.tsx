@@ -18,7 +18,6 @@ const PostMetrics = ({ slug }: { slug: string }) => {
   } = useBlogViews(slug, {
     revalidateOnMount: false,
   })
- 
 
   useEffect(() => viewsIncrement(), [])
 

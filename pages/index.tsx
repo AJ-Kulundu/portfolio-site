@@ -6,9 +6,9 @@ import React from "react"
 const TEXTS = ["Software Developer", "Technical Writer", "Cloud Practitioner"]
 
 const Home = () => {
-  const IMAGE = `https://ajkulundu.com/api/og`;
-  const [index, setIndex] = React.useState(0);
-  
+  const IMAGE = `https://ajkulundu.com/api/og`
+  const [index, setIndex] = React.useState(0)
+
   React.useEffect(() => {
     const intervalId = setInterval(
       () => setIndex((index: number) => index + 1),

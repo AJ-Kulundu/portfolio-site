@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps = async () => {
 const Tweets: NextPage = ({
   tweets,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const IMAGE = `https://ajkulundu.com/api/og?title=My Favourite Tweets`;
+  const IMAGE = `https://ajkulundu.com/api/og?title=My Favourite Tweets`
   return (
     <Container title="Tweets - AJ Kulundu" imageURL={IMAGE}>
       <div className="mx-auto max-w-2xl space-y-5 py-6">

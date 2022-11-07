@@ -13,7 +13,7 @@ export const getStaticProps = async () => {
 }
 
 const Blogs = ({ blogs }: { blogs: Blog[] }) => {
-  const IMAGE = `https://ajkulundu.com/api/og?title=My Blog Page`;
+  const IMAGE = `https://ajkulundu.com/api/og?title=My Blog Page`
   return (
     <Container title="Blog - AJ Kulundu" imageURL={IMAGE}>
       <div className="mx-auto max-w-2xl space-y-5 py-10">

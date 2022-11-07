@@ -106,14 +106,3 @@ export default async function handler(req: NextRequest) {
     })
   }
 }
-
-{
-  /* <h1 style={{line-height:1,
-          margin-left
-          }} tw="text-5xl capitalize font-bold ml-2 text-center">
-            AJ Kulundu
-          </h1>
-          <h1 style={{}} tw="text-5xl tracking-wide font-semibold ml-2 text-center">
-            {title}
-          </h1> */
-}

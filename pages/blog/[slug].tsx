@@ -21,7 +21,7 @@ export const getStaticProps = async ({ params }: any) => {
 }
 
 function BlogLayout({ blog }: { blog: Blog }) {
-  const IMAGE = `https://ajkulundu.com/api/og?title=${blog.title}`;
+  const IMAGE = `https://ajkulundu.com/api/og?title=${blog.title}`
   const MDXContent = useMDXComponent(blog.body.code)
   return (
     <Container
