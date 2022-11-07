@@ -13,8 +13,9 @@ export const getStaticProps = async () => {
 }
 
 const Blogs = ({ blogs }: { blogs: Blog[] }) => {
+  const IMAGE = `https://ajkulundu.com/api/og?title=My Blog Page`;
   return (
-    <Container title="Blog - AJ Kulundu">
+    <Container title="Blog - AJ Kulundu" imageURL={IMAGE}>
       <div className="mx-auto max-w-2xl space-y-5 py-10">
         <h1 className="text-3xl font-semibold tracking-wide">Blogs Page</h1>
         {blogs.map((blog: Blog) => (

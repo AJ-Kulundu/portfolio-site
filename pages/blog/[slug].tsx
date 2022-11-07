@@ -21,11 +21,13 @@ export const getStaticProps = async ({ params }: any) => {
 }
 
 function BlogLayout({ blog }: { blog: Blog }) {
+  const IMAGE = `https://ajkulundu.com/api/og?title=${blog.title}`;
   const MDXContent = useMDXComponent(blog.body.code)
   return (
     <Container
       title={`AJ Kulundu - ${blog.title}`}
       description={blog.description}
+      imageURL={IMAGE}
     >
       <div className="flex flex-col justify-center space-y-4 py-10">
         <div className="mx-auto flex max-w-2xl flex-row">

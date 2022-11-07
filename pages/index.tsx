@@ -6,8 +6,9 @@ import React from "react"
 const TEXTS = ["Software Developer", "Technical Writer", "Cloud Practitioner"]
 
 const Home = () => {
-  const [index, setIndex] = React.useState(0)
-
+  const IMAGE = `https://ajkulundu.com/api/og`;
+  const [index, setIndex] = React.useState(0);
+  
   React.useEffect(() => {
     const intervalId = setInterval(
       () => setIndex((index: number) => index + 1),
@@ -17,7 +18,7 @@ const Home = () => {
   }, [])
 
   return (
-    <Container>
+    <Container imageURL={IMAGE}>
       <div className="mx-auto mb-20 flex w-full max-w-2xl flex-col justify-start space-y-6 py-20 md:mb-8">
         <span className="flex justify-start text-xl">Hello, my name is</span>
         <span className="flex justify-start text-4xl font-bold tracking-wide">
