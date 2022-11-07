@@ -62,6 +62,8 @@ const Container = (props: { [x: string]: any; children: any }) => {
     title: "AJ Kulundu - Developer & Writer",
     description: "Softare Engineer and Technical writer",
     type: "website",
+    imageURL:"",
+    URL:"ajkulundu.com",
     ...customMeta,
   }
   const [isMounted, setIsMounted] = useState(false)
@@ -146,6 +148,9 @@ const Container = (props: { [x: string]: any; children: any }) => {
         <title>{meta.title}</title>
         <meta name="description" content={meta.description} />
         <meta property="og:type" content={meta.type} />
+        <meta property="og:title" content={meta.title}/>
+        <meta property="og:image" content={meta.imageURL} />
+        <meta property="og:url" content={meta.URL} /> 
         <meta property="og:site_name" content="AJ Kulundu" />
         <meta name="twitter:site" content="@AJKulundu" />
         <meta name="robots" content="follow, index" />
