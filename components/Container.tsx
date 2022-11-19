@@ -50,9 +50,9 @@ const pathVariants = {
 
 const NavItem = ({ href, children }: { href: string; children: string }) => {
   return (
-    <Link href={href} passHref>
-      <a className="text-lg font-semibold md:tracking-wide">{children}</a>
-    </Link>
+    <p className="text-lg font-semibold md:tracking-wide">
+      <Link href={href}>{children}</Link>
+    </p>
   )
 }
 

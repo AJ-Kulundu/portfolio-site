@@ -3,9 +3,11 @@ import Link from "next/link"
 
 const FooterLink = ({ href, children }: { href: string; children: string }) => {
   return (
-    <Link href={href} passHref>
-      <a className="text-md tracking-normal">{children}</a>
+    <p className="text-md tracking-normal">
+    <Link href={href}>
+     {children}
     </Link>
+    </p>
   )
 }
 
