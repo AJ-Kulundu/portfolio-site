@@ -42,7 +42,7 @@ function BlogLayout({ blog }: { blog: Blog }) {
           </div>
           <PostMetrics slug={blog.slug} />
         </div>
-        <article className="prose max-w-2xl marker:text-black prose-h2:text-4xl prose-h2:tracking-wide prose-h3:text-2xl prose-h3:tracking-wide prose-p:text-lg prose-p:font-medium prose-p:text-black prose-a:no-underline hover:prose-a:text-teal-500 prose-pre:max-w-2xl prose-li:font-medium prose-li:text-black prose-hr:border-2 prose-hr:opacity-60 dark:prose-invert dark:marker:text-white dark:prose-p:text-white dark:hover:prose-a:text-teal-600 dark:prose-li:text-white md:mx-auto">
+        <article className="prose max-w-2xl marker:text-black prose-h2:text-4xl prose-h2:tracking-wide prose-h3:text-2xl prose-h3:tracking-wide prose-p:text-lg prose-p:font-medium prose-p:text-black prose-a:text-teal-500 prose-pre:max-w-2xl prose-li:font-medium prose-li:text-black prose-hr:border-2 prose-hr:opacity-60 dark:prose-invert dark:marker:text-white dark:prose-p:text-white dark:prose-a:text-teal-600 dark:prose-li:text-white md:mx-auto">
           {blog && MDXContent ? <MDXContent /> : <h1>No blog posts</h1>}
         </article>
         <div className="flex items-center justify-center p-4">

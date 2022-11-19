@@ -1,0 +1,464 @@
+---
+title: Generating Open Graph Images at the Edge
+description: Use a combination of edge-functions, web assembly and satori to generate fast dynamic Open Graph Images from HTML and CSS.
+date: 2022-11-4
+---
+
+import { Playground } from "../components/CodePlayground"
+
+The [Open Graph Protoclol](https://ogp.me/) enables webpages to become rich objects in a social graph. In simpler terms, the protocol standardizes the use of metadata within a webpage to represent the webpage's content.
+For instance, the protocol is used on Facebook and Twitter to allow any webpage to have the same functionality as any other object on their platforms.
+
+To turn your website into graph objects you need to add basic metadata to your page. Metadata is added to websites by adding the `<meta>` tag in the `<head>` of your web pages. The basic open graph metadata required for a webpage are:
+
+- `og:title` : The title of your webpage as it should appear on the graph, e.g, "Open Graph blog".
+- `og:type` : The type of webpage or object.
+- `og:image` : The image URL which represents the image of your webpage on the graph.
+- `og:url` : The URL of your webpage, which is also used as its permanent ID in the graph.
+
+Some optional metadata you can also add are:
+
+- `og:description` : A one or two sentence description of your website.
+- `og:site_name` : The name of the overall website on which the webpage is found, e.g, "AJ Kulundu" which is the name of this site.
+
+---
+
+## The Problem
+
+If your site is static creating and sharing static images doesn't pose a problem because the images can be made and stored without being changed again.
+
+The problem arises when you have a dynamic site that requires dynamic images to represent the content on each dynamic page. Manually creating an image for each page is not feasible because the dynamic pages could go from hundreds of pages to millions of pages.
+The dynamic images need to be computed and generated instantly.
+
+---
+
+## The Solution
+
+Vercel recently released a library called `vercel/og`, which generates SVG images from HTML and CSS. It also uses the power of JSX to create dynamic images to represent dynamic pages. As part of their theme this year(2022), "_Dynamic Without Limits_ ", they created the library to generate dynamic images with the only limitation being your imagination.
+
+The library generates images in under a second. It achieves this speed by using a combination of edge-functions, web assembly and the satori library(a library that converts HTML and CSS to SVG; it can be used in modern web browsers, Node.js and Web Workers).
+The library comes with a load of features that include:
+
+- The ability to add a custom font, emojis and SVG images.
+- The use of tailwind(still experimental at the time of writing).
+- Support for different languages(although the use of left to right languages is not supported).
+- Parameter encryption which is used in advanced situations.
+
+---
+
+## Code Walkthrough
+
+Adding the feature to your site is very simple. You can add it and have it up and running within an hour or less. I'll show you.
+
+### Installing dependencies
+
+Start by creating a new NextJS project below.
+
+**NOTE** - The version of NextJS being used is 12.3 at the time of writing this.
+
+```bash:terminal
+npx create-next-app og-image-app --typescript
+```
+
+Once you have installed NextJS navigate to the directory `og-image-app` with the command below.
+
+```bash:terminal
+cd og-image-app
+```
+
+Install the `vercel/og` library in your `og-image-app` project
+
+```bash:terminal
+npm i vercel/og
+```
+
+That's all you need for this to work. Next, we'll look at how to generate a static open graph image with HTML and CSS.
+
+### Static Image
+
+As we said earlier that the library uses edge-functions, so we'll create a file called `og.tsx` in the `pages/api` directory of the project. That is where the serverless functions are created.
+Copy the code below into your `og.tsx` file.
+
+```tsx:pages/api/og.tsx {4-6} showLineNumbers
+import { ImageResponse } from '@vercel/og';
+
+// The experimental-edge makes the function run on the edge servers.
+export const config = {
+  runtime: 'experimental-edge',
+};
+
+export default function handler() {
+  /* This library uses CSS-in-JS.
+  TailwindCSS can be used (using tw prop) but it is still experimental and may cause bugs in production.
+  */
+    return new ImageResponse(
+    (
+      <div
+        style={{
+            fontSize: 100,
+            backgroundImage:
+              "radial-gradient(circle at 25px 25px, lightgray 2%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 2%, transparent 0%)",
+            backgroundSize: "100px 100px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+            padding: "40px 10px 40px 10px",
+            backgroundColor: "white",
+          }}
+      >
+        <div
+            style={{
+              right: 42,
+              top: 42,
+              position: "absolute",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <span
+              style={{
+                marginLeft: 8,
+                fontSize: 20,
+              }}
+            >
+              ajkulundu.com {/*Replace this line with the domain name of your site, e.g, ajkulundu.com*/}
+            </span>
+          </div>
+          <img
+            alt="GitHub Avatar"
+            width="150"
+            height="150"
+            /* Add a link to your github profile , using the link
+            https://github.com/{Your username}.png or you can use a link to another , */
+            src={`https://github.com/AJ-Kulundu.png`}
+            style={{
+              borderRadius: 128,
+              margin: "16px 0px",
+            }}
+          />
+          <div
+            style={{
+              lineHeight: 1,
+              fontSize: 48,
+              display: "flex",
+              margin: "16px 0px",
+            }}
+          >
+            <b>
+            AJ Kulundu {/*Replace this part with your name or the name of your site, e.g, AJ Kulundu */}
+           </b>
+          </div>
+          <div
+            style={{
+              lineHeight: 1,
+              fontSize: 48,
+              display: "flex",
+              margin: "16px 0px",
+              textAlign: "center",
+            }}
+          >
+            <b>
+            Developer & Writer {/*Replace this line with a random title,e.g, Developer & Writer */}
+            </b>
+          </div>
+      </div>
+    ),
+    {
+      width: 1000,
+      height: 600,
+    },
+  );
+}
+```
+
+The `experimental-edge` config highlighted was added to make it run on the edge servers. Making the function an edge-function.
+
+Run the code below to start the development server.
+
+```bash:terminal
+npm run dev
+```
+
+When you go to the URL `localhost:3000/api/og` you will see an image of 1000x600 pixels at the center of the screen. The image should be similar to the one shown below, with the changes you put as indicated by the comments.
+
+<Playground description="The image generated at /api/og endpoint">
+  <img src={"https://ajkulundu.com/api/og"} alt="OG Image example" />
+</Playground>
+
+The image is generated on the site and it is of no use other than being displayed at the API endpoint. We have to add the link to the meta tag for it to be displayed on links shared on social media. We'll look at that next.
+
+### Integration
+
+Integrating it into your site is very easy. All you need to do is add the link to your image endpoint, i.e `/api/og`, in the `og:image` meta tag and that's about it.
+
+```tsx:pages/index.tsx
+...
+function Home () {
+  const imageURL = "http://localhost:3000/api/og" {/*OR you can use the URL of your site with the endpoint /api/og */}
+  return(
+    <>
+    <head>
+    <meta property="og:image" content={imageURL}>
+    </head>
+    ...
+    </>
+  )
+...
+}
+```
+
+You can now deploy your website on your desired hosting service, preferably one that has native support for NextJS.
+Assuming that you deployed You can use this site [Banner Bear](https://www.bannerbear.com/tools/facebook-open-graph-preview-tool/) to test if the OG , shows the same , at the `/api/og` endpoint.
+
+Next, we'll look at how to make it dynamic.
+
+### Dynamic Image
+
+To make the site dynamic we will import the `NextRequest` type from `next/server`. You don't need to import `next/server`, it comes with the boilerplate NextJS app you created. To make the , dynamic we'll make the changes highlighted below.
+
+**NOTE** - Depending on how you have set up your ESLint rules, the `next/server` cannot be imported in any other file other than the `middleware.ts` file. To make it work you will have to change the ESLint rule to enable the library to work in the `og.tsx` file.
+To fix the problem add the comment `eslint-disable @next/next/no-server-import-in-page` at the top of the `og.tsx` file as highlighted below and the error will be fixed.
+
+```tsx:pages/api/og.tsx {1,3,10-14,87} showLineNumbers
+/* eslint-disable @next/next/no-server-import-in-page */
+import { ImageResponse } from '@vercel/og';
+import { NextRequest } from "next/server"
+// The experimental-edge makes the function run on the edge servers.
+export const config = {
+  runtime: 'experimental-edge',
+};
+
+export default function handler(req:NextRequest) {
+  const { searchParams } = new URL(req.url) // Parses the URL
+  const hasTitle = searchParams.has("title")// Checks whether the URL has the title parameter ("?title=")
+  const title = hasTitle
+    ? searchParams.get("title")?.slice(0, 100)
+    : "Software Developer" // Displays the title value if true or "Software Developer " if false.
+  /* This library uses CSS-in-JS.
+  TailwindCSS can be used (using tw prop) but it is still experimental and may cause bugs in production.*/
+    return new ImageResponse(
+    (
+      <div
+        style={{
+            fontSize: 100,
+            backgroundImage:
+              "radial-gradient(circle at 25px 25px, lightgray 2%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 2%, transparent 0%)",
+            backgroundSize: "100px 100px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+            padding: "40px 10px 40px 10px",
+            backgroundColor: "white",
+          }}
+      >
+        <div
+            style={{
+              right: 42,
+              top: 42,
+              position: "absolute",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <span
+              style={{
+                marginLeft: 8,
+                fontSize: 20,
+              }}
+            >
+              ajkulundu.com {/*Replace this line with the domain name of your site, e.g, ajkulundu.com*/}
+            </span>
+          </div>
+          <img
+            alt="GitHub Avatar"
+            width="150"
+            height="150"
+            {/* Add a link to your github profile , using the link
+            https://github.com/{Your username}.png or you can use a link to another , */}
+            src={`https://github.com/AJ-Kulundu.png`}
+            style={{
+              borderRadius: 128,
+              margin: "16px 0px",
+            }}
+          />
+          <div
+            style={{
+              lineHeight: 1,
+              fontSize: 48,
+              display: "flex",
+              margin: "16px 0px",
+            }}
+          >
+            <b>
+            AJ Kulundu {/*Replace this part with your name or the name of your site, e.g, AJ Kulundu */}
+           </b>
+          </div>
+          <div
+            style={{
+              lineHeight: 1,
+              fontSize: 48,
+              display: "flex",
+              margin: "16px 0px",
+              textAlign: "center",
+            }}
+          >
+            <b>
+            {title}
+            </b>
+          </div>
+      </div>
+    ),
+    {
+      width: 1000,
+      height: 600,
+    },
+  );
+}
+```
+
+We create the `searchParams` variable to get the full URL of the site together with its parameters. This will be used to check whether the URL has a parameter named title, of which the value will be parsed and displayed on the ,.
+Then we create a `hasTitle` variable with the boolean type to check whether `searchParams` has a title paramater, it should return true if the title parameter is in the URL and false otherwise.
+Lastly, we create a `title` variable with a ternary operator using `hasTitle` variable as the condition. If 'hasTitle' is true the value of the title parameter is displayed otherwise a predefined string is displayed,e.g, Developer and Writer.
+
+You can now run the development server, then go and check the endpoint `http://localhost:3000/api/og?title=My Dynamic Image` and see whether the text `My Dynamic Image` shows. To make changes to the title change the values that come after `?title=` in the URL.
+
+<Playground description="The dynamic image generated with the title 'My Dynamic Image' ">
+  <img
+    src={"https://ajkulundu.com/api/og?title=My Dynamic Image"}
+    alt="OG Image example"
+  />
+</Playground>
+
+**NOTE** - This is an API endpoint which means it doesn't have fast-refresh feature. You'll have to manually recall the endpoint every time you make a change.
+
+### Adding a Custom Font
+
+Create a folder called `assets` in the project root. Chose your favorite font from [1001 free fonts](https://www.1001freefonts.com/typewriter.font). Download and unzip the folder.
+Add your custom `.ttf` or `.otf` to the assets folder. For my image, I used the Work Sans font but you can go through the fonts and pick your favorite.
+
+Make the changes highlighted below. Make sure to use the name of the font you downloaded if it isn't Work Sans.
+
+```tsx:pages/api/og.tsx {9-11,14,27,100-106} showLineNumbers
+/* eslint-disable @next/next/no-server-import-in-page */
+import { ImageResponse } from '@vercel/og';
+import { NextRequest } from "next/server"
+// The experimental-edge makes the function run on the edge servers.
+export const config = {
+  runtime: 'experimental-edge',
+};
+
+const font = fetch(new URL("../../assets/WorkSans-Regular.otf", import.meta.url), // Make sure the font file is in the specified path
+).then((res) => res.arrayBuffer())
+
+export default async function handler(req:NextRequest) {
+  const fontData = await font
+  const { searchParams } = new URL(req.url)
+  const hasTitle = searchParams.has("title")
+  const title = hasTitle
+    ? searchParams.get("title")?.slice(0, 100)
+    : "Software Developer"
+  /* This library uses CSS-in-JS.
+  TailwindCSS can be used (using tw prop) but it is still experimental and may cause bugs in production.*/
+    return new ImageResponse(
+    (
+      <div
+        style={{
+            fontSize: 100,
+            fontFamily: '"Work Sans"',
+            backgroundImage: "radial-gradient(circle at 25px 25px, lightgray 2%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 2%, transparent 0%)",
+            backgroundSize: "100px 100px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+            padding: "40px 10px 40px 10px",
+            backgroundColor: "white",
+          }}
+      >
+        <div
+            style={{
+              right: 42,
+              top: 42,
+              position: "absolute",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <span
+              style={{
+                marginLeft: 8,
+                fontSize: 20,
+              }}
+            >
+              ajkulundu.com {/*Replace this line with the domain name of your site, e.g, ajkulundu.com*/}
+            </span>
+          </div>
+          <img
+            alt="GitHub Avatar"
+            width="150"
+            height="150"
+            {/* Add a link to your github profile , using the link
+            https://github.com/{Your username}.png or you can use a link to another , */}
+            src={`https://github.com/AJ-Kulundu.png`}
+            style={{
+              borderRadius: 128,
+              margin: "16px 0px",
+            }}
+          />
+          <div
+            style={{
+              lineHeight: 1,
+              fontSize: 48,
+              display: "flex",
+              margin: "16px 0px",
+            }}
+          >
+            <b>
+            AJ Kulundu {/*Replace this part with your name or the name of your site, e.g, AJ Kulundu */}
+           </b>
+          </div>
+          <div
+            style={{
+              lineHeight: 1,
+              fontSize: 48,
+              display: "flex",
+              margin: "16px 0px",
+              textAlign: "center",
+            }}
+          >
+            <b>
+            {title}
+            </b>
+          </div>
+      </div>
+    ),
+    {
+      width: 1000,
+      height: 600,
+      fonts: [
+          {
+            name: "Work Sans",
+            data: fontData,
+            style: "normal",
+          },
+        ],
+    },
+  );
+}
+```
+
+The changes should show the text of your image in the font style you chose.
+
+## Closing Thoughts
+
+When creating content, you create it with the view of sharing it with others. If you want to share it on platforms and capture the attention of others, a unique image that represents the content can go a long way in making you stand out.
+For example, the engagement rate for tweets that embed social card images(`og:image`) is 40% higher than those that do not embed them.
+It is therefore a necessity to have unique images that represent the contents of your website to have a higher engagement rate for your content.

@@ -9,6 +9,7 @@ export const config = {
 const font = fetch(
   new URL("../../assets/WorkSans-Regular.otf", import.meta.url),
 ).then((res) => res.arrayBuffer())
+
 export default async function handler(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url)
