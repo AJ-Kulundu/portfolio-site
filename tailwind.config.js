@@ -2,6 +2,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
@@ -25,6 +26,11 @@ module.exports = {
       }
     })
     },
+    fontFamily:{
+      'sans':['var(--font-worksans)'],
+      'manrope':['var(--font-manrope)'],
+      'inter':['var(--font-inter)'],
+    }
   },
   plugins: [require('@tailwindcss/typography'),],
 };
