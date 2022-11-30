@@ -1,3 +1,4 @@
+"use client"
 import React from "react"
 import { HeartIcon } from "@heroicons/react/solid"
 import { useBlogLikes } from "@libs/useBlogLikes"
