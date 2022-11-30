@@ -1,13 +1,13 @@
 import React from "react"
 import { Inter } from "@next/font/google"
 import NavBar from "./NavBar"
-import "../styles/globals.css"
 
 const inter = Inter({
   variable: "--font-inter",
 })
 
 import "tailwindcss/tailwind.css"
+import "../styles/globals.css"
 
 export default function RootLayout({
   children,
