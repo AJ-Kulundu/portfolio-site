@@ -4,6 +4,11 @@ import Link from "next/link"
 import { useTheme } from "next-themes"
 import Footer from "./Footer"
 import { motion, AnimatePresence } from "framer-motion"
+import { Inter } from "@next/font/google"
+
+const inter = Inter({
+  variable: "--font-inter",
+})
 
 const svgVariants = {
   initial: {
@@ -50,7 +55,7 @@ const pathVariants = {
 
 const NavItem = ({ href, children }: { href: string; children: string }) => {
   return (
-    <p className="text-lg font-semibold md:tracking-wide">
+    <p className={`text-lg font-semibold md:tracking-wide`}>
       <Link href={href}>{children}</Link>
     </p>
   )
@@ -157,7 +162,9 @@ const Container = (props: { [x: string]: any; children: any }) => {
       </Head>
       <div className="flex w-full flex-col justify-center px-8">
         <div className="sticky top-0 z-20 w-full  bg-neutral-100 py-6  dark:bg-neutral-900 ">
-          <nav className=" mx-auto flex w-full max-w-2xl flex-row items-center justify-between">
+          <nav
+            className={`${inter.variable} mx-auto flex w-full max-w-2xl flex-row items-center justify-between font-inter`}
+          >
             <div className="flex flex-row items-center gap-x-4">
               <NavItem href="/">Home</NavItem>
               <NavItem href="/blog">Blog</NavItem>

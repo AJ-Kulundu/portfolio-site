@@ -1,19 +1,24 @@
 import React from "react"
 import Link from "next/link"
+import { Inter } from "@next/font/google"
+
+const inter = Inter({
+  variable: "--font-inter",
+})
 
 const FooterLink = ({ href, children }: { href: string; children: string }) => {
   return (
     <p className="text-md tracking-normal">
-    <Link href={href}>
-     {children}
-    </Link>
+      <Link href={href}>{children}</Link>
     </p>
   )
 }
 
 const Footer = () => {
   return (
-    <footer className="mx-auto mb-8 flex w-full max-w-2xl flex-col">
+    <footer
+      className={`${inter.variable} mx-auto mb-8 flex w-full max-w-2xl flex-col font-inter`}
+    >
       <hr className="mb-4 border-2 border-neutral-200 dark:border-neutral-800" />
       <div className=" flex flex-col space-y-4 sm:py-12 md:flex-row md:justify-between md:space-y-0 md:py-0">
         <div className="flex flex-col space-y-4">
