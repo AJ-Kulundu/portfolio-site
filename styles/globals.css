@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-    body{
-        font-family: 'Work Sans', sans-serif;
-    }
-}
 
 
 ::selection {
@@ -47,7 +42,7 @@ html {
 	max-width: 700px;
 	cursor: pointer;
 }
-  
+
 .anchor:hover {
 	@apply visible;
 }
@@ -172,7 +167,7 @@ pre {
 }
   
 .rehype-code-title {
-	@apply px-5 py-3 font-mono text-sm font-bold text-gray-800 bg-gray-200 border border-b-0 border-gray-200 rounded-t-lg dark:text-gray-200 dark:border-gray-700 dark:bg-gray-900;
+	@apply px-5 py-3 font-sans text-sm font-bold text-gray-800 bg-gray-200 border border-b-0 border-gray-200 rounded-t-lg dark:text-gray-200 dark:border-gray-700 dark:bg-gray-900;
 }
   
 .rehype-code-title + pre {
