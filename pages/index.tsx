@@ -1,7 +1,11 @@
-import type { NextPage } from "next"
 import Container from "@components/Container"
 import TextTransition, { presets } from "react-text-transition"
 import React from "react"
+import { Work_Sans } from "@next/font/google"
+
+const worksans = Work_Sans({
+  variable: "--font-worksans",
+})
 
 const TEXTS = ["Software Developer", "Technical Writer", "Cloud Practitioner"]
 
@@ -19,18 +23,20 @@ const Home = () => {
 
   return (
     <Container imageURL={IMAGE}>
-      <div className="mx-auto mb-20 flex w-full max-w-2xl flex-col justify-start space-y-6 py-20 md:mb-8">
-        <span className="flex justify-start text-xl">Hello, my name is</span>
-        <span className="flex justify-start text-4xl font-bold tracking-wide">
+      <div
+        className={`mx-auto mb-20 flex w-full max-w-2xl flex-col justify-start space-y-6 py-20 md:mb-8 ${worksans.variable} font-sans`}
+      >
+        <p className={`flex justify-start text-xl `}>Hello, my name is</p>
+        <p className={`flex justify-start text-4xl font-bold tracking-wide`}>
           AJ Kulundu
-        </span>
+        </p>
         <div className="flex flex-row">
-          <span className="text-2xl ">I&apos;m a&nbsp;</span>
-          <span className="text-2xl font-bold text-black dark:text-white">
+          <p className={`text-2xl `}>I&apos;m a&nbsp;</p>
+          <p className={`text-2xl font-bold text-black dark:text-white `}>
             <TextTransition springConfig={presets.gentle} inline>
               {TEXTS[index % TEXTS.length]}
             </TextTransition>
-          </span>
+          </p>
         </div>
       </div>
     </Container>

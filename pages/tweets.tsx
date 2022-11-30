@@ -2,6 +2,15 @@ import type { NextPage, GetStaticProps, InferGetStaticPropsType } from "next"
 import Container from "@components/Container"
 import { queryTweets } from "@libs/twitter"
 import { Tweet } from "@components/Tweet"
+import { Work_Sans, Manrope } from "@next/font/google"
+
+const worksans = Work_Sans({
+  variable: "--font-worksans",
+})
+
+const manrope = Manrope({
+  variable: "--font-manrope",
+})
 
 export const getStaticProps: GetStaticProps = async () => {
   const tweetIds = [
@@ -29,13 +38,17 @@ const Tweets: NextPage = ({
   return (
     <Container title="Tweets - AJ Kulundu" imageURL={IMAGE}>
       <div className="mx-auto max-w-2xl space-y-5 py-6">
-        <h1 className="text-3xl font-semibold tracking-wide">Tweets</h1>
-        <p className="font-medium">
+        <h1
+          className={` ${manrope.variable} font-manrope text-3xl font-semibold`}
+        >
+          Tweets
+        </h1>
+        <p className={`${worksans.variable} font-sans font-medium`}>
           I use twitter sometimes and find tweets that make me think, give me
           inspiration or explain my ideas better. I created this page to share
           some of my favourite tweets.
         </p>
-        <div className="mt-4 space-y-10">
+        <div className={`${worksans.variable} mt-4 space-y-10 font-sans`}>
           {tweets.map((tweet: any) => (
             <Tweet key={tweet.id} {...tweet} />
           ))}
