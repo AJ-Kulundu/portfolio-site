@@ -1,3 +1,4 @@
+"use client"
 import React from "react"
 import { Blog } from "contentlayer/generated"
 import { formattedDate } from "@libs/formattedDate"
