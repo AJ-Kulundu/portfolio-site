@@ -1,3 +1,4 @@
+"use client"
 import cx from "clsx"
 import type { ImageProps } from "next/image"
 import NextImage from "next/image"
