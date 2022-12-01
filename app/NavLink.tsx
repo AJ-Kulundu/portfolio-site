@@ -16,7 +16,7 @@ export default function NavLink({
   return (
     <p
       className={cn(
-        `text-lg font-semibold md:tracking-wide`,
+        `text-xl font-semibold md:tracking-wide`,
         active && "underline",
       )}
     >
