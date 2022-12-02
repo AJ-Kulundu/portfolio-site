@@ -14,7 +14,7 @@ export default async function TweetPage() {
   ]
   const tweets = await queryTweets(tweetIds)
   return (
-    <div className="mx-auto max-w-2xl space-y-5 py-6">
+    <div className="mx-auto max-w-2xl space-y-5 py-6 px-5">
       <h1 className={`text-3xl font-semibold`}>Tweets</h1>
       <p className={`font-medium`}>
         I use twitter sometimes and find tweets that make me think, give me
