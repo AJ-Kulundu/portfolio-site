@@ -1,7 +1,7 @@
 import React from "react"
 import { Inter } from "@next/font/google"
 import NavBar from "./NavBar"
-
+import Footer from "@components/Footer";
 const inter = Inter({
   variable: "--font-inter",
 })
@@ -26,6 +26,7 @@ export default function RootLayout({
           <NavBar />
         </div>
         {children}
+        <Footer/>
       </body>
     </html>
   )
