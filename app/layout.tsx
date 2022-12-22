@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} bg-neutral-100 font-inter dark:bg-neutral-900`}
+      className={`bg-neutral-100  dark:bg-neutral-900`}
     >
       <body
         className={`${inter.variable} bg-neutral-100 font-inter dark:bg-neutral-900`}
