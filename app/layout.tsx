@@ -22,7 +22,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} bg-neutral-100 font-inter dark:bg-neutral-900`}
       >
-        <div className="sticky top-0 z-20 w-full  bg-neutral-100 py-6  dark:bg-neutral-900 ">
+        <div className="sticky top-0 z-20 w-full  bg-neutral-100 py-6  dark:bg-neutral-900 shadow">
           <NavBar />
         </div>
         {children}
