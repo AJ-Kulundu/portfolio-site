@@ -3,6 +3,7 @@ import { formattedDate } from "@libs/formattedDate"
 import { notFound } from "next/navigation"
 import PostMetrics from "@components/PostMetrics"
 import Article from "@components/Article"
+import LikeButton from "@components/LikeButton"
 
 export async function generateStaticParams() {
   return allBlogs.map((blog) => ({
@@ -29,6 +30,9 @@ export default async function BlogPage({ params }: { params: any }) {
       </div>
       <div className="pb-6 md:pb-10">
         <Article code={blog.body.code} />
+      </div>
+      <div className="flex items-center justify-center p-4">
+          <LikeButton slug={blog.slug} />
       </div>
     </div>
   )
