@@ -28,7 +28,6 @@ const Footer = () => {
           <FooterLink href="https://www.linkedin.com/in/james-kulundu-480034234/">
             LinkedIn
           </FooterLink>
-          <FooterLink href="jameskulundu@gmail.com">Email</FooterLink>
           <FooterLink href="https://medium.com/@AJkulundu">Medium</FooterLink>
         </div>
       </div>
