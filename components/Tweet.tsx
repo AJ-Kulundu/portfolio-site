@@ -51,7 +51,7 @@ export const Tweet = ({
             <div key={media.media_key}>
               <LazyImage
                 src={media.preview_image_url || media.url}
-                alt={media.alt_text}
+                alt={media.alt_text!}
                 height={media.height}
                 width={media.width}
                 className="rounded-lg"
