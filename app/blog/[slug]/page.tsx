@@ -4,6 +4,11 @@ import { notFound } from "next/navigation"
 import PostMetrics from "@components/PostMetrics"
 import Article from "@components/Article"
 import LikeButton from "@components/LikeButton"
+import { Oswald } from "@next/font/google"
+
+const oswald = Oswald({
+  variable: "--font-oswald",
+})
 
 export async function generateStaticParams() {
   return allBlogs.map((blog) => ({
@@ -17,8 +22,8 @@ export default async function BlogPage({ params }: { params: any }) {
     notFound()
   }
   return (
-    <div className="mx-auto flex max-w-2xl flex-col space-y-4 px-5 md:space-y-6">
-      <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
+    <div className="mx-auto flex max-w-2xl flex-col space-y-4 p-5 md:space-y-6">
+      <h1 className={`${oswald.variable} font-oswald text-4xl font-bold tracking-tight md:text-6xl`}>
         {blog?.title}
       </h1>
       <div className="mx-auto flex w-full max-w-2xl flex-row justify-start space-x-4">
