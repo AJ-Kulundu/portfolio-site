@@ -3,9 +3,6 @@ import React from "react"
 import { queryTweets } from "@libs/twitter"
 import { Tweet } from "@components/Tweet"
 
-
-
-
 export default async function TweetPage() {
   
   const tweetIds = [
