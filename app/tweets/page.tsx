@@ -1,10 +1,9 @@
-import "server-only";
+import "server-only"
 import React from "react"
 import { queryTweets } from "@libs/twitter"
 import { Tweet } from "@components/Tweet"
 
 export default async function TweetPage() {
-  
   const tweetIds = [
     "1520782141075902464",
     "1522560136346099712",

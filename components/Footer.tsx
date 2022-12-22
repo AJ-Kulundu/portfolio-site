@@ -1,7 +1,6 @@
 import React from "react"
 import Link from "next/link"
 
-
 const FooterLink = ({ href, children }: { href: string; children: string }) => {
   return (
     <p className="text-md tracking-normal">

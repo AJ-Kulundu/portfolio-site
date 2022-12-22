@@ -23,7 +23,9 @@ export default async function BlogPage({ params }: { params: any }) {
   }
   return (
     <div className="mx-auto flex max-w-2xl flex-col space-y-4 p-5 md:space-y-6">
-      <h1 className={`${oswald.variable} font-oswald text-4xl font-bold tracking-tight md:text-6xl`}>
+      <h1
+        className={`${oswald.variable} font-oswald text-4xl font-bold tracking-tight md:text-6xl`}
+      >
         {blog?.title}
       </h1>
       <div className="mx-auto flex w-full max-w-2xl flex-row justify-start space-x-4">
@@ -37,7 +39,7 @@ export default async function BlogPage({ params }: { params: any }) {
         <Article code={blog.body.code} />
       </div>
       <div className="flex items-center justify-center p-4">
-          <LikeButton slug={blog.slug} />
+        <LikeButton slug={blog.slug} />
       </div>
     </div>
   )
