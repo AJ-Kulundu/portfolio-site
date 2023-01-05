@@ -12,8 +12,9 @@ export default async function Head() {
         property="og:description"
         content="Fullstack web developer and writer"
       />
+      <link rel="icon" href="/logo.png"/>
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@ajkulundu" />
+      <meta name="twitter:site" content="@AJKulundu" />
       <meta name="twitter:title" content="AJ Kulundu - Developer & Writer" />
       <meta
         name="twitter:description"
