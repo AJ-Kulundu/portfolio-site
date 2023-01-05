@@ -22,7 +22,7 @@ export default async function Head() {
       <meta name="twitter:image" content="https://ajkulundu.com/api/og" />
       <meta
         name="ahrefs-site-verification"
-        content="bfc8ab9a9bb8174e380b00473778fc96c5f89a65cbe63eb875172efa91536fea"
+        content="6f576614b1c1fb08c62016220a1d65fa8b46bf57a0ae660542cf31db48d8217b"
       />
     </>
   )
