@@ -23,7 +23,7 @@ export default function BCard({ blog }: { blog: Blog }) {
       <h2 className="text-2xl font-semibold hover:underline">
         <Link href={blog.url}>{blog.title}</Link>
       </h2>
-      <div className="flex flex-row items-center space-x-4">
+      <div className="flex flex-row items-center space-x-4 text-sm tracking-wide">
         <span className="font-light ">{formattedDate(blog.date)}</span>
         <div className="font-light">&middot;</div>
         <span className="flex flex-row font-light">
@@ -35,7 +35,7 @@ export default function BCard({ blog }: { blog: Blog }) {
         </span>
       </div>
       <p className="text-lg tracking-wide">{blog.description}</p>
-      <p className="font-light">{blog.readingTime.text}</p>
+      <p className="font-light text-sm tracking-wide">{blog.readingTime.text}</p>
     </div>
   )
 }
