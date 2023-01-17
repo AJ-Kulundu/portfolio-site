@@ -17,7 +17,7 @@ export default async function TweetPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-5 py-6 px-5">
       <h1 className={`text-3xl font-semibold`}>Tweets</h1>
-      <p className={`font-medium text-lg`}>
+      <p className={`text-lg font-medium`}>
         I use twitter sometimes and find tweets that make me think, give me
         inspiration or explain my ideas better. I created this page to share
         some of my favourite tweets.

@@ -35,7 +35,9 @@ export default function BCard({ blog }: { blog: Blog }) {
         </span>
       </div>
       <p className="text-lg tracking-wide">{blog.description}</p>
-      <p className="font-light text-sm tracking-wide">{blog.readingTime.text}</p>
+      <p className="text-sm font-light tracking-wide">
+        {blog.readingTime.text}
+      </p>
     </div>
   )
 }

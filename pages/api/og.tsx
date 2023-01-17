@@ -31,7 +31,6 @@ export default async function handler(req: Request) {
             width: "100%",
             height: "100%",
             padding: "40px 10px 40px 10px",
-            
           }}
         >
           <div
@@ -44,20 +43,20 @@ export default async function handler(req: Request) {
             }}
           >
             <img
-            alt="GitHub Avatar"
-            width="30"
-            height="30"
-            src={`https://github.com/AJ-Kulundu.png`}
-            style={{
-              borderRadius: 128,
-              margin: "16px 0px",
-            }}
-          />
+              alt="GitHub Avatar"
+              width="30"
+              height="30"
+              src={`https://github.com/AJ-Kulundu.png`}
+              style={{
+                borderRadius: 128,
+                margin: "16px 0px",
+              }}
+            />
             <span
               style={{
                 marginLeft: 8,
                 fontSize: 20,
-                color:"white",
+                color: "white",
               }}
             >
               ajkulundu.com
@@ -71,7 +70,7 @@ export default async function handler(req: Request) {
               margin: "16px 0px",
             }}
           >
-            <span style={{color:"white",}}>AJ Kulundu</span>
+            <span style={{ color: "white" }}>AJ Kulundu</span>
           </div>
           <div
             style={{
@@ -82,7 +81,7 @@ export default async function handler(req: Request) {
               textAlign: "center",
             }}
           >
-            <span style={{color:"white",}}>{title}</span>
+            <span style={{ color: "white" }}>{title}</span>
           </div>
         </div>
       ),

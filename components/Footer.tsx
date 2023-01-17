@@ -15,7 +15,7 @@ const Footer = () => {
       className={`mx-auto mb-8 flex w-full max-w-2xl flex-col py-6  md:py-8`}
     >
       <hr className="mb-4 border-2 border-neutral-200 dark:border-neutral-800" />
-      <div className=" flex flex-col px-5 space-y-4 sm:py-12 md:flex-row md:justify-between md:space-y-0 md:py-0">
+      <div className=" flex flex-col space-y-4 px-5 sm:py-12 md:flex-row md:justify-between md:space-y-0 md:py-0">
         <div className="flex flex-col space-y-4">
           <FooterLink href="/">Home</FooterLink>
           <FooterLink href="/blog">Blog</FooterLink>
