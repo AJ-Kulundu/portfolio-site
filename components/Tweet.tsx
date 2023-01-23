@@ -1,6 +1,6 @@
 import type { FormattedTweet } from "@models/twitter"
 import LazyImage from "./LazyImage"
-import { BadgeCheckIcon } from "@heroicons/react/outline"
+import { BadgeCheckIcon } from "@heroicons/react/solid"
 import Image from "next/image"
 
 export const Tweet = ({
