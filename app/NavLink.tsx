@@ -12,7 +12,8 @@ export default function NavLink({
   children: string
 }) {
   let segment = useSelectedLayoutSegment()
-  let active = href === `/${segment}`
+  let active = segment == null? href == "/" : href ==`/${segment}`
+  console.log(href,segment);
   return (
     <p
       className={cn(
