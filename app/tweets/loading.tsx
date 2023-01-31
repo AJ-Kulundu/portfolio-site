@@ -10,7 +10,7 @@ export default function Loading() {
       <div className="mt-4 space-y-10">
         {/*  */}
         <div className=" mx-auto min-h-[25%] w-full rounded-2xl bg-neutral-900/5 p-5 shadow-md">
-          <div className="mb-2 flex space-x-4 items-center">
+          <div className="mb-2 flex items-center space-x-4">
             <div className="flex h-10 w-10 animate-pulse items-center rounded-full bg-gray-900/10"></div>
             <div className="h-6 w-3/5 animate-pulse rounded-2xl bg-gray-900/10"></div>
           </div>
@@ -22,7 +22,7 @@ export default function Loading() {
         </div>
         {/*  */}
         <div className=" mx-auto min-h-[25%] w-full rounded-2xl bg-neutral-900/5 p-5 shadow-md">
-          <div className="mb-2 flex  space-x-4 items-center">
+          <div className="mb-2 flex  items-center space-x-4">
             <div className="flex h-10 w-10 animate-pulse items-center rounded-full bg-gray-900/10"></div>
             <div className="h-6 w-3/5 animate-pulse rounded-2xl bg-gray-900/10"></div>
           </div>
@@ -34,7 +34,7 @@ export default function Loading() {
         </div>
         {/*  */}
         <div className=" mx-auto min-h-[25%] w-full rounded-2xl bg-neutral-900/5 p-5 shadow-md">
-          <div className="mb-2 flex space-x-4 items-center">
+          <div className="mb-2 flex items-center space-x-4">
             <div className="flex h-10 w-10 animate-pulse items-center rounded-full bg-gray-900/10"></div>
             <div className="h-6 w-3/5 animate-pulse rounded-2xl bg-gray-900/10"></div>
           </div>
@@ -46,7 +46,7 @@ export default function Loading() {
         </div>
         {/*  */}
         <div className=" mx-auto min-h-[25%] w-full rounded-2xl bg-neutral-900/5 p-5 shadow-md">
-          <div className="mb-2 flex space-x-4 items-center">
+          <div className="mb-2 flex items-center space-x-4">
             <div className="flex h-10 w-10 animate-pulse items-center rounded-full bg-gray-900/10"></div>
             <div className="h-6 w-3/5 animate-pulse rounded-2xl bg-gray-900/10"></div>
           </div>
