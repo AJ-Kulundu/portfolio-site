@@ -11,11 +11,11 @@ import VideoRef from "../components/lab/ref-blog/VideoRef"
 The `useRef` hook is a hook I have found hard to understand, owing to the fact I found it similar to the `useState` hook. Before we look at the differences and similarities between the two hooks we'll first have to understand the `useRef` hook, what is used for(with examples), when to use it and when not to use it(because knowing when not to use something is just as important as knowing when to use it).
 
 The `useRef` hook is a core react hook that enables you to persist a mutable value between renders that is not needed for rendering. The mutable value stored does not trigger a rerender when mutated. The `useref` hook has two uses:
+
 - Referencing a value with a ref.
 - Accessing the DOM with a ref.
 
-
-The `useRef` hook takes an initialValue of any type and returns a `ref` object. The ref object has a `current` property that can be used to reference the value. The `current` property is used to reference a mutable value or to access browser APIs.  
+The `useRef` hook takes an initialValue of any type and returns a `ref` object. The ref object has a `current` property that can be used to reference the value. The `current` property is used to reference a mutable value or to access browser APIs.
 
 ```jsx
 const ref = useRef(initialValue)
@@ -26,9 +26,9 @@ const ref = useRef(initialValue)
 
 ## useRef Background
 
-The `useRef` hook is used to create `refs` in react. A `ref` is a special object that can be used to reference a value in the DOM or a value in a component. In react a `ref` is used as an escape hatch to access the DOM and browser APIs that react does not expose. 
+The `useRef` hook is used to create `refs` in react. A `ref` is a special object that can be used to reference a value in the DOM or a value in a component. In react a `ref` is used as an escape hatch to access the DOM and browser APIs that react does not expose.
 
-React is a declarative library, meaning that you describe what you want to happen and react takes care of the details. This means that you don't have to worry about how the DOM is updated, react takes care of that for you. This is why you don't have to worry about how the DOM is updated when you use the `useState` hook to update the state of a component. When you need to access the DOM directly, 
+React is a declarative library, meaning that you describe what you want to happen and react takes care of the details. This means that you don't have to worry about how the DOM is updated, react takes care of that for you. This is why you don't have to worry about how the DOM is updated when you use the `useState` hook to update the state of a component. When you need to access the DOM directly,
 this requires an imperative approach, which means you describe how you want something to happen hence you will need to "step outside" react. A `ref` is used to "step outside" react hence it is considered an escape hatch.
 
 ---
@@ -80,9 +80,8 @@ As you can see the changes occurred without having to rerender the component. Th
 
 ## Manipulating the DOM
 
-The `useRef` hook as stated earlier, can be used to access the DOM elements. In most cases, react manages and automatically updates the DOM for you. However, there are times you need to access the DOM directly, for example,  media playback, to get access to browser APIs such as mouse position, to focus on a node, etc.
+The `useRef` hook as stated earlier, can be used to access the DOM elements. In most cases, react manages and automatically updates the DOM for you. However, there are times you need to access the DOM directly, for example, media playback, to get access to browser APIs such as mouse position, to focus on a node, etc.
 In the examples that follow we will see how useRef can be used to access and manipulate the DOM.
-
 
 ```tsx:VideoRef.tsx
 export default function VideoRef() {
@@ -111,19 +110,19 @@ export default function VideoRef() {
         />
       </video>
       <button onClick={handleClick} className="flex justify-center">
-        {isPlaying ? (
+       {isPlaying ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth={1.5}
             stroke="currentColor"
-            className="h-10 w-10"
+            className="h-6 w-6"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 5.25v13.5m-7.5-13.5v13.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
             />
           </svg>
         ) : (
@@ -131,14 +130,14 @@ export default function VideoRef() {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth={1.5}
             stroke="currentColor"
-            className="h-10 w-10"
+            className="h-6 w-6"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 5.25v13.5m-7.5-13.5v13.5"
             />
           </svg>
         )}
@@ -147,6 +146,7 @@ export default function VideoRef() {
   )
 }
 ```
+
 From the code above you can see that the `ref` is created with `useRef` and passed to the video element. The `ref` is then used to access the video element and call the `play()` and `pause()` methods to control the video playback. These methods are not made available by react and hence you need to access the DOM directly.
 
 Clicking the icon below will play the video. Clicking it again will pause the video.
@@ -154,7 +154,6 @@ Clicking the icon below will play the video. Clicking it again will pause the vi
 <Playground description="An example of how to play and pause a video using useRef">
   <VideoRef />
 </Playground>
-
 
 ---
 
@@ -184,4 +183,3 @@ They are both used to create a `ref` but `useRef` is a hook while `createRef` is
 ## Closing thoughts
 
 In this article we have seen how to use the `useRef` hook to create a ref, reference a value with a ref and manipulate the DOM. We have also seen how the `useRef` hook is different from the `useState` hook and the `createRef` class.
-
