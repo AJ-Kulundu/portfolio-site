@@ -12,7 +12,7 @@ export default async function Head({ params }: { params: any }) {
 
   return (
     <>
-      <title>{blog.title} - AJ Kulundu </title>
+      <title>{blog.title}</title>
       <meta name="description" content={blog.description} />
       <meta property="og:type" content="website" />
       <meta
