@@ -26,6 +26,7 @@ export default async function Head({ params }: { params: any }) {
       <meta name="twitter:description" content={blog.description} />
       <meta name="twitter:image" content={ogImage} />
       <meta property="article:published_time" content={blog.date} />
+      <link rel="icon" href="/logo.png" />
     </>
   )
 }

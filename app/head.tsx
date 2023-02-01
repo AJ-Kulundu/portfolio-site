@@ -3,7 +3,7 @@ export default async function Head() {
     <>
       <title>AJ Kulundu - Developer & Writer</title>
       <meta name="robots" content="follow, index" />
-      <meta property="og:url" content="ajkulundu.com" />
+      <meta property="og:url" content="https://ajkulundu.com" />
       <meta property="og:image" content="https://ajkulundu.com/api/og" />
       <meta property="og:title" content="AJ Kulundu - Developer & Writer" />
       <meta property="og:type" content="website" />
