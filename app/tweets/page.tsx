@@ -19,7 +19,8 @@ export default async function TweetPage() {
     <div className="mx-auto max-w-2xl space-y-5 py-6 px-5">
       <h1 className={`text-3xl font-semibold`}>Tweets</h1>
       <p className={`text-lg font-medium`}>
-      I use Twitter to find insight and enlightenment. I&apos;m sharing my favourite tweets here to encourage reflection and discovery.
+        I use Twitter to find insight and enlightenment. I&apos;m sharing my
+        favourite tweets here to encourage reflection and discovery.
       </p>
       <div className={` mt-4 space-y-10 `}>
         {tweets.map((tweet: any) => (
