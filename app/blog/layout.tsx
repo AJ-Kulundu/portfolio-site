@@ -2,7 +2,10 @@ import React from 'react';
 import {Metadata} from 'next';
 
 export const metadata:Metadata = {
-    title: " Blog",
+    title: {
+      template:'%s | Blog',
+      default:'Blog'
+    },
     description: "Blog",
     openGraph: {
         images: "https://ajkulundu.com/api/og?title=Blog",

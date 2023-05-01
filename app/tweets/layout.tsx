@@ -2,7 +2,7 @@ import React from 'react';
 import {Metadata} from 'next';
 
 export const metadata:Metadata = {
-    title: " Favourite Tweets",
+    title: "AJ Kulundu - Favourite Tweets",
     description: "Favourite tweets",
     openGraph: {
         images: "https://ajkulundu.com/api/og?title=Favourite Tweets",

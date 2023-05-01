@@ -4,7 +4,58 @@ import { notFound } from "next/navigation"
 import PostMetrics from "@components/PostMetrics"
 import Article from "@components/Article"
 import LikeButton from "@components/LikeButton"
+import {Metadata} from 'next';
 
+interface PageProps {
+  params:{
+    slug:string
+  }
+}
+
+async function getPageFromParams(params:PageProps["params"]){
+  const slug = params?.slug
+  const blog = await allBlogs.find((blog: Blog) => blog.slug === slug)
+
+  if (!blog){
+    null
+  }
+
+  return blog
+}
+
+async function generateMetadata({params}:PageProps): Promise<Metadata> {
+  const blog = await getPageFromParams(params)
+  if (!blog){
+    return {}
+  }
+
+  return {
+    title: blog.title,
+    description: blog.description,
+    openGraph: {
+      images:`https://ajkulundu.com/api/og?title=${blog.title}`,
+      url: "https://ajkulundu.com",
+      siteName: "AJ Kulundu",
+      type: "website",
+      description: "AJ Kulundu - Developer & Writer",
+    },
+    robots:{
+      follow: true,
+      index: true,
+    },
+    icons: {
+      icon: "/logo.png",
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@AJKulundu",
+      title: "AJ Kulundu - Developer & Writer",
+      description: "Fullstack web developer and writer",
+      creator: "@AJKulundu",
+      images:{ url: `https://ajkulundu.com/api/og?title=${blog.title}`, alt: `AJ Kulundu - ${blog.title}` },
+    }
+  }
+}
 
 export async function generateStaticParams() {
   return allBlogs.map((blog) => ({
@@ -12,8 +63,8 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function BlogPage({ params }: { params: any }) {
-  const blog = await allBlogs.find((blog: Blog) => blog.slug === params.slug)
+export default async function BlogPage({ params }: PageProps) {
+  const blog = await getPageFromParams(params)
   if (!blog) {
     notFound()
   }
