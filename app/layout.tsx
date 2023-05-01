@@ -32,6 +32,7 @@ export const metadata = {
     title: "AJ Kulundu - Developer & Writer",
     description: "Fullstack web developer and writer",
     creator: "@AJKulundu",
+    images:{ url: "https://ajkulundu.com/api/og.png", alt: "AJ Kulundu - Developer & Writer" },
   }
 }
 
