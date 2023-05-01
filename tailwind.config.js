@@ -24,12 +24,6 @@ module.exports = {
         },
       }
     })
-    },
-    fontFamily:{
-      'sans':['var(--font-worksans)'],
-      'manrope':['var(--font-manrope)'],
-      'inter':['var(--font-inter)'],
-      'oswald':['var(--font-oswald)']
     }
   },
   plugins: [require('@tailwindcss/typography'),],

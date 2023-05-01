@@ -6,11 +6,7 @@ const nextConfig = {
     domains:["pbs.twimg.com"]
   },
   experimental:{
-    fontLoaders:[
-      { loader: '@next/font/google', options: { subsets: ['latin'] } },
-    ],
     appDir:true,
-    serverComponentsExternalPackages: ["@prisma/client"],
   },
  
 }
