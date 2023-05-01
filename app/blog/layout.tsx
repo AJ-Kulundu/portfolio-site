@@ -1,10 +1,10 @@
 import React from 'react';
 
 export const metadata = {
-    title: " Favourite Tweets",
-    description: "Favourite tweets",
+    title: " Blog",
+    description: "Blog",
     openGraph: {
-        images: "https://ajkulundu.com/api/og?title=Favourite Tweets",
+        images: "https://ajkulundu.com/api/og?title=Blog",
         url: "https://ajkulundu.com",
     siteName: "AJ Kulundu",
     type: "website",
@@ -23,7 +23,7 @@ export const metadata = {
         title: "AJ Kulundu - Developer & Writer",
         description: "Fullstack web developer and writer",
         creator: "@AJKulundu",
-        images:{ url: "https://ajkulundu.com/api/og?title=Favourite Tweets", alt: "AJ Kulundu - Favourite Tweets" },
+        images:{ url: "https://ajkulundu.com/api/og?title=Blog", alt: "AJ Kulundu - Blog" },
       }
 }
 
