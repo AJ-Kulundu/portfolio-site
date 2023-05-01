@@ -2,11 +2,12 @@ import React from "react"
 import NavBar from "./NavBar"
 import Footer from "@components/Footer"
 import Analytics from "@components/Analytics"
+import {Metadata} from 'next';
 
 import "tailwindcss/tailwind.css"
 import "../styles/globals.css"
 
-export const metadata = {
+export const metadata:Metadata = {
   title: {
     default: "AJ Kulundu - Developer & Writer",
     template:"AJ Kulundu - %s",
