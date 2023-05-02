@@ -30,7 +30,7 @@ async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   }
 
   return {
-    title: blog.title,
+    title: {absolute: blog.title},
     description: blog.description,
     openGraph: {
       images: `https://ajkulundu.com/api/og?title=${blog.title}`,

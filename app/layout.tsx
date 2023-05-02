@@ -8,7 +8,7 @@ import "tailwindcss/tailwind.css"
 import "../styles/globals.css"
 
 export const metadata: Metadata = {
-  title: "AJ Kulundu - Developer & Writer",
+  title:{ template:"AJ Kulundu - %s",default:"AJ Kulundu - Developer & Writer"},
   description: "Fullstack web developer and writer",
   openGraph: {
     images: "https://ajkulundu.com/api/og",

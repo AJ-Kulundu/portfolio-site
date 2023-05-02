@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
-    "@next/font": "^13.0.4",
     "@prisma/client": "^4.2.1",
     "@vercel/analytics": "^0.1.11",
     "@vercel/og": "^0.0.19",
