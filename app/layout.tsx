@@ -2,7 +2,8 @@ import React from "react"
 import NavBar from "./NavBar"
 import Footer from "@components/Footer"
 import Analytics from "@components/Analytics"
-import { Metadata } from "next"
+import { Metadata } from "next";
+import { ThemeProvider } from "@components/ThemeProvider";
 
 import "tailwindcss/tailwind.css"
 import "../styles/globals.css"
@@ -46,15 +47,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`bg-neutral-100  dark:bg-neutral-900`}>
-      <body className={`bg-neutral-100  dark:bg-neutral-900`}>
-        <div className="sticky top-0 z-20 w-full  bg-neutral-100 py-6  shadow dark:bg-neutral-900">
+    <html lang="en" className={`bg-neutral-100  `}>
+      <body className={`bg-neutral-100 dark:bg-neutral-900  `}>
+        <ThemeProvider>
+        <div className="sticky top-0 z-20 w-full py-6  shadow">
           <NavBar />
-          <Analytics />
         </div>
         {children}
-
+        <Analytics />
         <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )
