@@ -2,8 +2,8 @@ import React from "react"
 import NavBar from "./NavBar"
 import Footer from "@components/Footer"
 import Analytics from "@components/Analytics"
-import { Metadata } from "next";
-import { ThemeProvider } from "@components/ThemeProvider";
+import { Metadata } from "next"
+import { ThemeProvider } from "@components/ThemeProvider"
 
 import "tailwindcss/tailwind.css"
 import "../styles/globals.css"
@@ -50,12 +50,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`bg-neutral-100 dark:bg-neutral-900  `}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <div className="sticky top-0 z-20 w-full py-6 bg-neutral-100 dark:bg-neutral-900 shadow">
-          <NavBar />
-        </div>
-        {children}
-        <Analytics />
-        <Footer />
+          <div className="sticky top-0 z-20 w-full bg-neutral-100 py-6 shadow dark:bg-neutral-900">
+            <NavBar />
+          </div>
+          {children}
+          <Analytics />
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
