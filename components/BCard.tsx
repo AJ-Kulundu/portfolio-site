@@ -19,7 +19,7 @@ export default function BCard({ blog }: { blog: Blog }) {
     isLoading: likesLoading,
   } = useBlogLikes(blog.slug, { revalidateOnMount: false })
   return (
-    <div className="flex flex-col justify-start space-y-2 rounded-xl p-5 shadow-md">
+    <div className="flex flex-col justify-start space-y-2 rounded-xl p-5 shadow-md bg-neutral-900/5 dark:bg-neutral-100/5">
       <h2 className="text-2xl font-semibold hover:underline">
         <Link href={blog.url}>{blog.title}</Link>
       </h2>

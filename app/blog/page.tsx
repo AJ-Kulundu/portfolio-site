@@ -42,8 +42,8 @@ export default async function Blogs() {
   return (
     <div className="mx-auto flex max-w-2xl flex-col space-y-5 py-10">
       <h1 className={`px-5 text-3xl font-bold tracking-wide`}>Blog Page</h1>
-      {blogs.map((blog: Blog) => (
-        <BCard key={blog._id} blog={blog} />
+      {blogs.map((blog: Blog,i) => (
+        <BCard key={blog._id} blog={blog}/>
       ))}
     </div>
   )

@@ -1,7 +1,8 @@
 import type { FormattedTweet } from "@models/twitter"
 import LazyImage from "./LazyImage"
 import { BadgeCheckIcon } from "@heroicons/react/solid"
-import Image from "next/image"
+import Image from "next/image";
+import {motion} from 'framer-motion';
 
 export const Tweet = ({
   text,

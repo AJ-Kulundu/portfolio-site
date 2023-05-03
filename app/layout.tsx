@@ -47,10 +47,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`bg-neutral-100  `}>
+    <html lang="en">
       <body className={`bg-neutral-100 dark:bg-neutral-900  `}>
-        <ThemeProvider>
-        <div className="sticky top-0 z-20 w-full py-6  shadow">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <div className="sticky top-0 z-20 w-full py-6 bg-neutral-100 dark:bg-neutral-900 shadow">
           <NavBar />
         </div>
         {children}
